@@ -17,7 +17,12 @@ export const SInput = styled.input`
   transition: 400ms all;
 
   &:focus {
-    outline: 5px solid #d8d8d86c;
+    outline: 4px solid ${colors("orange010")};
+  }
+
+  &::placeholder {
+    font-size: 0.9rem;
+    color: ${colors("black100")};
   }
 `;
 
