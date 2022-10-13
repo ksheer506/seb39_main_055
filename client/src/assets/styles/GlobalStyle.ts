@@ -57,6 +57,11 @@ const GlobalStyle = createGlobalStyle`
   button {
     cursor: pointer;
   }
+
+  // react-toastify Nav바 가리지 않도록 위치 수정
+  div.Toastify__toast-container--top-center {
+    top: 70px;
+  }
 `;
 
 export default GlobalStyle;
