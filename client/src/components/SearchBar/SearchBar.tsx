@@ -2,29 +2,39 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
-import search from "../../../assets/icons/search.png";
+import { colors } from "../../assets";
+import search from "../../assets/icons/search.png";
+
+export const SInput = styled.input`
+  outline: 5px solid rgba(0, 0, 0, 0);
+  border: 2px solid ${colors("black050")};
+  border: 0px;
+  width: 100%;
+  height: 100%;
+  border-radius: 100px;
+  padding: 5px 60px 5px 25px;
+  font-size: 16px;
+  transition: 400ms all;
+
+  &:focus {
+    outline: 5px solid #d8d8d86c;
+  }
+`;
 
 export const SSearchBar = styled.div`
+  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 30px;
-  margin: 0 auto;
-  margin-top: 100px;
   width: 75%;
   height: 55px;
-  border: 1px solid #707070;
-  border-radius: 40px;
+  border: 2px solid ${colors("black050")};
+  border-radius: 100px;
   transition: all 0.4s;
 
-  & > input {
-    outline: none;
-    border: none;
-    width: 90%;
-    font-size: 18px;
-  }
-
   & > img {
+    position: absolute;
+    right: 30px;
     width: 24px;
     height: 24px;
     cursor: pointer;
@@ -57,7 +67,7 @@ const SearchBar = ({ className }: SearchBarProps) => {
 
   return (
     <SSearchBar className={className}>
-      <input
+      <SInput
         value={inputValue}
         onChange={handleInputChange}
         onKeyPress={handleInputKeyPress}

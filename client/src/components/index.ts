@@ -17,6 +17,7 @@ export { default as PlaceCardListHeader } from "./PlaceCardList/PlaceCardListHea
 export { default as PlaceForm } from "./PlaceForm/PlaceForm";
 export { default as PreviewImage } from "./ProfileImage/ProfileImage";
 export { default as SearchAddress } from "./SearchAddress/SearchAddress";
+export { default as SearchBar } from "./SearchBar/SearchBar";
 export { default as SharedLayout } from "./SharedLayout/SharedLayout";
 export { default as PlaceSkeleton } from "./Skeleton/PlaceCardSkeleton";
 export { Circle, Rectangle, Skeleton } from "./Skeleton/Skeleton";
