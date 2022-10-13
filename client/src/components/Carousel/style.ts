@@ -1,13 +1,23 @@
 import styled, { css } from "styled-components";
 
+import { mobile, tablet } from "../../assets";
+
 export const SCarouselBox = styled.div`
   display: flex;
   width: 100%;
-  height: 100%;
+  height: 480px;
   position: relative;
   flex-flow: row nowrap;
   z-index: 1;
   overflow: hidden;
+
+  ${tablet(css`
+    height: 440px;
+  `)}
+
+  ${mobile(css`
+    height: 395px;
+  `)}
 `;
 
 const arrowDefault = css`
@@ -25,12 +35,20 @@ const arrowDefault = css`
 export const SNext = styled.span`
   position: absolute;
   right: 15px;
-  top: 37%;
+  top: calc(330px / 2);
   width: 25px;
   height: 25px;
   transform: translateY(-50%);
   z-index: 3;
   cursor: pointer;
+
+  ${tablet(css`
+    top: calc(300px / 2);
+  `)}
+
+  ${mobile(css`
+    top: calc(270px / 2);
+  `)}
 
   &::before {
     ${arrowDefault}

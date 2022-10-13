@@ -1,6 +1,5 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
-import { mobile, tablet } from "../../../assets";
 import Img2 from "../../../assets/images/carousel/2.jpg";
 import Img3 from "../../../assets/images/carousel/3.jpg";
 import Img4 from "../../../assets/images/carousel/4.jpg";
@@ -9,19 +8,8 @@ import Carousel from "../../Carousel/Carousel";
 import Banner, { BannerProps } from "./Banner";
 
 const SHeader = styled.header`
-  width: 100%;
-  height: 700px;
-  position: absolute;
-  top: 80px;
-  left: 0px;
-
-  ${tablet(css`
-    height: 660px;
-  `)}
-
-  ${mobile(css`
-    height: 635px;
-  `)}
+  width: 100vw;
+  height: max-content;
 `;
 
 const carouselItems = [

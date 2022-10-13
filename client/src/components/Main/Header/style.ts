@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import styled, { css } from "styled-components";
 
-import { mobile, tablet } from "../../../assets";
+import { fontSizes, mobile, tablet } from "../../../assets";
 
 export const SArticle = styled.article`
   width: 100vw;
@@ -10,13 +10,27 @@ export const SArticle = styled.article`
 `;
 
 export const SLink = styled(Link)`
+  display: block;
   width: 100%;
-  height: 500px;
+  height: 330px;
+  overflow: hidden;
+
+  ${tablet(
+    css`
+      height: 300px;
+    `
+  )}
+
+  ${mobile(
+    css`
+      height: 270px;
+    `
+  )}
 `;
 
 export const SImg = styled.img`
   width: 100%;
-  height: 500px;
+  height: 100%;
   object-fit: cover;
 `;
 
@@ -24,22 +38,28 @@ export const SSection = styled.section`
   display: flex;
   flex-flow: column nowrap;
   padding: 20px 0px;
-  height: calc(100% - 500px);
+  height: calc(100% - 330px);
   background-color: white;
-  padding-left: 100px;
-  font-size: 42px;
+  padding-left: 60px;
+  font-size: 35px;
+  overflow: hidden;
+
+  ${fontSizes("mainH2")}
 
   ${tablet(
     css`
       padding-left: 18px;
-      font-size: 35px;
+      height: calc(100% - 300px);
+      ${fontSizes("mainH3")}
     `
   )}
 
   ${mobile(
     css`
       padding-left: 10px;
-      font-size: 23px;
+      font-size: 22px;
+      height: calc(100% - 270px);
+      ${fontSizes("mainH4")}
     `
   )}
 `;
@@ -52,7 +72,7 @@ export const SH1 = styled.h1`
 export const SH2 = styled.h2`
   font-size: 0.7em;
   font-weight: lighter;
-  line-height: 4rem;
+  line-height: 3.2rem;
 
   ${tablet(
     css`
@@ -73,7 +93,7 @@ export const SMoreInfoBox = styled.div`
   font-size: 0.45em;
   font-weight: lighter;
   color: #555555;
-  margin-top: 15px;
+  margin-top: 10px;
 
   ${mobile(
     css`

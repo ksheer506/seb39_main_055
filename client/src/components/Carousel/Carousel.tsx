@@ -64,14 +64,15 @@ const Carousel = ({ items, animationTime = 800 }: CarouselProps) => {
   return (
     <SCarouselBox>
       <SPrev onClick={() => throttledIndexer("prev")} />
+
       <ul>
-        {items.map((e) => (
+        {items.map(({ item, id }) => (
           <SItemList
             animationTime={animationTime}
-            className={`${classNameMatcher(e.id, index)}`}
-            key={e.id}
+            className={`${classNameMatcher(id, index)}`}
+            key={id}
           >
-            {e.item}
+            {item}
           </SItemList>
         ))}
       </ul>
