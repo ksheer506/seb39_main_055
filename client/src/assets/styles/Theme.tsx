@@ -2,9 +2,9 @@ import { css, FlattenSimpleInterpolation } from "styled-components";
 
 export const theme = {
   breakPoints: {
-    mobile: "481px",
-    tablet: "758px",
-    desktop: "1281px",
+    mobile: "480px",
+    tablet: "760px",
+    desktop: "1280px",
   },
   colors: {
     black010: "#F5F5F5",
@@ -21,6 +21,13 @@ export const theme = {
     orange025: "#FFE699",
     orange075: "#FFDB70",
     orange500: "#ffc107",
+  },
+  fontSizes: {
+    mainH1: "40px",
+    mainH2: "35px",
+    mainH3: "30px",
+    mainH4: "25px",
+    mainH5: "20px",
   },
 };
 
@@ -54,3 +61,7 @@ export const breakPoints = (
 export const colors = (code: keyof typeof theme.colors) => {
   return theme.colors[code];
 };
+
+export const fontSizes = (code: keyof typeof theme.fontSizes) => css`
+  font-size: ${theme.fontSizes[code]};
+`;
