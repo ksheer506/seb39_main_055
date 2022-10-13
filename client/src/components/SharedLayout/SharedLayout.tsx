@@ -12,21 +12,23 @@ const SContainer = styled.div`
 
 const SSection = styled.section<{ isOverWidth: boolean }>`
   margin: 0 auto;
-  padding-top: 80px;
+  padding-top: 60px;
   min-height: calc(100vh - 300px); // nav or footer height 변경
   max-width: ${({ isOverWidth }) => (isOverWidth ? "1600px" : "1130px")};
 `;
+
+const overWidthPaths = ["/search", "/place/list"];
 
 const SharedLayout = () => {
   const { pathname } = useLocation();
   const [isOverWidth, setIsOverWidth] = useState(false);
 
   useEffect(() => {
-    if (pathname === "/search" || pathname === "/place/list") {
+    if (overWidthPaths.includes(pathname)) {
       setIsOverWidth(true);
-    } else {
-      setIsOverWidth(false);
+      return;
     }
+    setIsOverWidth(false);
   }, [pathname]);
 
   return (
