@@ -1,4 +1,8 @@
-import styled from "styled-components";
+import { Link } from "react-router-dom";
+import styled, { css } from "styled-components";
+
+import { breakPoints, colors } from "../../../assets";
+import SearchBar from "../../SearchBar/SearchBar";
 
 export const SNav = styled.nav`
   position: fixed;
@@ -6,21 +10,23 @@ export const SNav = styled.nav`
   justify-content: center;
   width: 100%;
   background-color: #ffffff;
-  box-shadow: rgb(0 0 0 / 20%) 0px 0px 4px 0px;
+  box-shadow: 0px 1px 7px 0px #cecece;
   z-index: 3;
 `;
 
 export const SSection = styled.section`
   width: 100%;
-  padding: 0 80px;
+  max-width: 1400px;
+  padding: 0 35px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 80px;
+  height: 60px;
 
   & > img {
-    width: 160px;
-    height: 45px;
+    width: 130px;
+    height: 35px;
+    margin-top: -5px;
     cursor: pointer;
   }
 
@@ -29,12 +35,37 @@ export const SSection = styled.section`
   }
 `;
 
+export const Search = styled(SearchBar)`
+  margin: 0px 55px;
+  height: 38px;
+  margin-top: 0px;
+
+  & > input {
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0);
+  }
+
+  & > img {
+    width: 20px;
+    height: 20px;
+    background-color: rgba(0, 0, 0, 0);
+    cursor: pointer;
+  }
+
+  ${breakPoints(
+    1000,
+    css`
+      margin: 0px 25px;
+    `
+  )}
+`;
+
 export const SMenu = styled.div`
+  flex: 1 0 auto;
   position: relative;
   display: flex;
   align-items: center;
-  gap: 40px;
-  font-size: 25px;
+  gap: 0px;
 
   & > img {
     display: none;
@@ -50,30 +81,66 @@ export const SMenu = styled.div`
     }
   }
 
-  & > button {
-    padding: 10px;
-    border: none;
-    border-radius: 10px;
-    background-color: inherit;
-    font-size: 18px;
+  & > span {
+    flex: 0 0 2px;
+    display: block;
+    height: 22px;
+    width: 2px;
+    margin: 0px 8px;
+    border-radius: 100%;
+    background-color: ${colors("black050")};
+  }
+`;
+
+export const SLink = styled(Link)`
+  display: flex;
+  position: relative;
+  align-items: center;
+  padding: 10px;
+  border: none;
+  font-size: 16px;
+  transition: 0.4s all;
+  margin-top: 3px;
+  overflow: hidden;
+
+  &::after {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    content: "";
+    bottom: 0px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0px;
+    height: 3px;
+    margin-top: 3px;
+    background-color: ${colors("orange075")};
     transition: 0.4s all;
+  }
+
+  &:hover::after {
+    width: 80%;
+  }
+
+  &:hover {
+    color: ${colors("orange500")};
+  }
+
+  &:nth-child(n + 3) {
+    color: ${colors("black200")};
 
     &:hover {
-      background-color: ${({ theme }) => theme.colors.black010};
+      color: ${colors("black400")};
     }
+  }
 
+  @media screen and (max-width: ${({ theme }) => theme.breakPoints.tablet}) {
     &:nth-child(1) {
-      color: #ffc107;
+      display: none;
     }
 
-    @media screen and (max-width: ${({ theme }) => theme.breakPoints.tablet}) {
-      &:nth-child(1) {
-        display: none;
-      }
-
-      &:nth-child(2) {
-        display: none;
-      }
+    &:nth-child(2) {
+      display: none;
     }
   }
 `;
@@ -88,13 +155,11 @@ export const SHamberger = styled.div`
   border-radius: 25px;
   color: #161616;
   font-size: 18px;
-  box-shadow: 1px 3px 10px hsla(0, 0%, 0%, 0.05),
-    1px 2px 4px hsla(0, 0%, 0%, 0.05), 0 4px 8px hsla(0, 0%, 0%, 0.1);
   transition: all 0.4s;
   transition: 0.4s all;
 
   &:hover {
-    background-color: ${({ theme }) => theme.colors.black010};
+    ${colors("black010")}
     cursor: pointer;
   }
 
