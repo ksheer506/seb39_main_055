@@ -17,8 +17,6 @@ const GlobalStyle = createGlobalStyle`
     font-weight: normal;
     font-style: normal;
 }
-
-  /* font-family: 'Noto Sans KR', sans-serif; */
   
   * {
     box-sizing: border-box;
