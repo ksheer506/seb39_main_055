@@ -2,7 +2,7 @@ import { BiHide, BiShow } from "react-icons/bi";
 import { Link } from "react-router-dom";
 import styled, { css } from "styled-components";
 
-import { colors, mobile } from "../../../assets";
+import { colors, formBorders, mobile } from "../../../assets";
 import {
   ButtonOrange,
   ButtonWhite,
@@ -45,6 +45,8 @@ export const SLoginSection = styled.section`
     padding: 30px;
     height: 550px;
   `)}
+
+  ${formBorders}
 `;
 
 export const SForm = styled.form`

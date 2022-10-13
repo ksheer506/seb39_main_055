@@ -1,7 +1,7 @@
 import { BiHide, BiShow } from "react-icons/bi";
 import styled, { css } from "styled-components";
 
-import { colors } from "../../../assets";
+import { colors, formBorders } from "../../../assets";
 import { ButtonOrange } from "../../../components";
 
 export const SContainer = styled.div`
@@ -28,6 +28,8 @@ export const SContainer = styled.div`
     border: 1px solid #dbdbdb;
     border-radius: 0 0 10px 10px;
     font-family: "Noto Sans KR", sans-serif;
+
+    ${formBorders}
   }
 
   @media screen and (max-width: ${({ theme }) => theme.breakPoints.tablet}) {
