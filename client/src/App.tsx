@@ -65,7 +65,7 @@ const App = () => {
           </Route>
         </Routes>
       </Modal>
-      <ToastContainer position="top-center" pauseOnFocusLoss theme="colored" />
+      <ToastContainer position="top-center" pauseOnFocusLoss />
     </>
   );
 };
