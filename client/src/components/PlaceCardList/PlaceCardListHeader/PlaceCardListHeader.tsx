@@ -7,9 +7,9 @@ import {
   SaBox,
   SaP,
   SbP,
-  SearchBar,
   SHeader,
   SLocSVG,
+  SSearchBar,
   SWarningBox,
 } from "./style";
 
@@ -26,7 +26,7 @@ const PlaceListHeader = memo(
 
     return (
       <SHeader>
-        {showSearchBar && <SearchBar />}
+        {showSearchBar && <SSearchBar />}
         {title}
         <SWarningBox showWarning={!locPermission}>
           <SaBox>

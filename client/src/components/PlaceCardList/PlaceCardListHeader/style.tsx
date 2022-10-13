@@ -1,7 +1,7 @@
 import { IoLocationOutline } from "react-icons/io5";
 import styled, { css } from "styled-components";
 
-import { SearchBar as Search } from "../../Main";
+import SearchBar from "../../SearchBar/SearchBar";
 
 const WARNING_BREAKPOINT = "580px";
 
@@ -17,7 +17,7 @@ export const SHeader = styled.header`
   }
 `;
 
-export const SearchBar = styled(Search)`
+export const SSearchBar = styled(SearchBar)`
   margin-top: 65px;
   max-width: 800px;
 `;
