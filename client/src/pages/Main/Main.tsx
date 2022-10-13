@@ -1,65 +1,49 @@
 /* eslint-disable react/jsx-key */
 /* eslint-disable react/no-array-index-key */
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
-import {
-  Category,
-  Header,
-  HotPlace,
-  Pick,
-  Recommend,
-  Review,
-  SearchBar,
-} from "../../components";
-import { menuList } from "../../constants";
+import { tablet } from "../../assets";
+import { Header, HotPlace, Recommend, Review } from "../../components";
 
 const Container = styled.div`
-  min-height: inherit;
-  padding-top: 600px;
+  top: 60px;
+  width: 100%;
+  position: relative;
 
   & > section {
     display: flex;
-    flex-direction: column;
-    row-gap: 150px;
-
-    @media screen and (max-width: ${({ theme }) => theme.breakPoints.tablet}) {
-      & > div:nth-child(1) {
-        margin-bottom: 100px;
-      }
-
-      & > menu:nth-child(2) {
-        margin-bottom: 150px;
-      }
-
-      & > div:nth-child(3) {
-        margin-bottom: 150px;
-      }
-
-      & > div:nth-child(4) {
-        margin-bottom: 150px;
-      }
-
-      & > div:nth-child(5) {
-        margin-bottom: 150px;
-      }
-
-      & > div:nth-child(6) {
-        margin-bottom: 150px;
-      }
-    }
+    flex-flow: row nowrap;
+    justify-content: center;
+    width: 100%;
   }
 `;
+
+const SContentBox = styled.div`
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  width: 100%;
+  max-width: 1200px;
+  margin: 250px 0px; // Header와의 간격: row-gap과 동일하게
+  row-gap: 250px;
+
+  ${tablet(css`
+    margin: 150px 0px;
+    padding: 0px 30px;
+    row-gap: 150px;
+  `)}
+`;
+
 const Main = () => {
   return (
     <Container>
       <Header />
-      <section>
-        <SearchBar />
-        <Category menuList={menuList} />
-        <Recommend />
-        <HotPlace />
-        <Pick />
-        <Review />
+      <section className="main-contents">
+        <SContentBox>
+          <Recommend />
+          <HotPlace />
+          <Review />
+        </SContentBox>
       </section>
     </Container>
   );
