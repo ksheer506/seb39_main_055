@@ -9,6 +9,7 @@ import {
   Mypage,
   NewPlace,
   NewPost,
+  Oauth,
   PlaceDetail,
   PlaceList,
   PostDetail,
@@ -21,6 +22,7 @@ export const UserRouter = () => {
   return (
     <Routes>
       <Route path="/login" element={<Login />} />
+      <Route path="/login/oauth" element={<Oauth />} />
       <Route path="/signup" element={<Signup />} />
       <Route path="/business" element={<Business />} />
       <Route path="/mypage" element={<Mypage />} />
