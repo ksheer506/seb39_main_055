@@ -1,8 +1,8 @@
 import { AiOutlineLine } from "react-icons/ai";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import styled, { css } from "styled-components";
 
-import { mobile } from "../../../assets";
+import { colors, mobile } from "../../../assets";
 
 interface RecommendProps {
   id: number;
@@ -12,13 +12,12 @@ interface RecommendProps {
   date: string;
   alt: string;
   textTitle: string;
-  textLine1: string;
-  textLine2: string;
+  textLine: string;
   link: string;
   isEven: boolean;
 }
 
-const SLink = styled(Link)`
+const SCardList = styled.li`
   flex: 0 1 280px;
   transition: 0.4s ease-out;
 
@@ -52,7 +51,7 @@ const Category = styled.div`
 const STextBox = styled.div`
   display: flex;
   flex-flow: column nowrap;
-  row-gap: 5px;
+  /* row-gap: 5px; */
   line-height: 20px;
 `;
 
@@ -61,18 +60,8 @@ const TextTitle = styled.div`
   font-size: 25px;
 `;
 
-const TextLine1 = styled.div`
-  color: ${({ theme }) => theme.colors.black400};
-  font-size: 14px;
-
-  ${mobile(css`
-    width: 300px;
-    flex-wrap: wrap;
-  `)}
-`;
-
-const TextLine2 = styled.div`
-  color: ${({ theme }) => theme.colors.black400};
+const TextLine = styled.div`
+  color: ${colors("black250")};
   font-size: 16px;
 
   ${mobile(css`
@@ -83,7 +72,7 @@ const TextLine2 = styled.div`
 
 const Date = styled.div`
   color: ${({ theme }) => theme.colors.black100};
-  margin: 10px 0px 15px 0px;
+  margin: 10px 0px 0px 0px;
   font-size: 12px;
 `;
 
@@ -95,29 +84,29 @@ const MainPlaceCard = ({
   date,
   alt,
   textTitle,
-  textLine1,
-  textLine2,
+  textLine,
   link,
   isEven,
 }: RecommendProps) => {
   return (
-    <SLink to={`/place/${id}`}>
-      <section>
-        <SImageBox isEven={isEven}>
-          <Image src={image} alt={alt} />
-        </SImageBox>
-        <div>
-          <Category>{category}</Category>
-          <TextTitle>{textTitle}</TextTitle>
-          <AiOutlineLine size={25} />
-          <STextBox>
-            <TextLine1>{textLine1}</TextLine1>
-            <TextLine2>{textLine2}</TextLine2>
-            <Date>{date}</Date>
-          </STextBox>
-        </div>
-      </section>
-    </SLink>
+    <SCardList>
+      <Link to={`/place/${id}`}>
+        <section>
+          <SImageBox isEven={isEven}>
+            <Image src={image} alt={alt} />
+          </SImageBox>
+          <div>
+            <Category>{category}</Category>
+            <TextTitle>{textTitle}</TextTitle>
+            <AiOutlineLine size={25} />
+            <STextBox>
+              <TextLine>{textLine}</TextLine>
+              <Date>{date}</Date>
+            </STextBox>
+          </div>
+        </section>
+      </Link>
+    </SCardList>
   );
 };
 
