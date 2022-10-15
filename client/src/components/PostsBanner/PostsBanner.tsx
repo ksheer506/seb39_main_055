@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import styled, { css } from "styled-components";
 
 import { breakPoints, colors, fontSizes } from "../../assets";
-import { cat1, cat2, cat3, dog1, dog2 } from "../../assets/images/animal";
+import { cat2, cat3, dog1, dog2 } from "../../assets/images/animal";
 
 export const SLink = styled(Link)`
   display: flex;
@@ -84,7 +84,7 @@ const SImage = styled.img`
   )}
 `;
 
-const imageList = [cat1, cat3, dog1, dog2];
+const imageList = [cat3, dog1, cat2, dog2];
 
 const PostsBanner = () => {
   return (
