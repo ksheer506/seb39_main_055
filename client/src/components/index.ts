@@ -1,4 +1,3 @@
-export { default as Banner } from "./Banner/Banner";
 export { default as Category } from "./Category/Category";
 export { default as CustomCalendar } from "./CustomCalendar/CustomCalendat";
 export { default as Dots } from "./Dots/Dots";
@@ -15,6 +14,7 @@ export { default as PlaceCard } from "./PlaceCard/PlaceCard";
 export { default as PlaceCardList } from "./PlaceCardList/PlaceCardList";
 export { default as PlaceCardListHeader } from "./PlaceCardList/PlaceCardListHeader/PlaceCardListHeader";
 export { default as PlaceForm } from "./PlaceForm/PlaceForm";
+export { default as PostsBanner } from "./PostsBanner/PostsBanner";
 export { default as PreviewImage } from "./ProfileImage/ProfileImage";
 export { default as SearchAddress } from "./SearchAddress/SearchAddress";
 export { default as SearchBar } from "./SearchBar/SearchBar";

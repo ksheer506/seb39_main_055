@@ -1,5 +1,5 @@
 import { AiOutlineLine } from "react-icons/ai";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styled, { css } from "styled-components";
 
 import { mobile } from "../../../assets";
@@ -17,51 +17,24 @@ interface RecommendProps {
   link: string;
   isEven: boolean;
 }
-// const SContainer = styled.div
-//   display: flex;
-//   gap: 10px;
-//   flex-wrap: no-wrap;
-//   overflow-x: scroll;
-//   overflow-y: hidden;
-//   height: 500px;
-//   border: 1px solid black;
 
-//   & > section {
-//     flex: 0 0 auto;
-//     width: 300px;
-//     height: 100%;
-//     border: 1px solid red;
-//   }
+const SLink = styled(Link)`
+  flex: 0 1 280px;
+  transition: 0.4s ease-out;
 
-//   & > section:nth-child(2n) {
-//     height: 80%;
-//   }
-
-//   & > section > div:first-child {
-//     border: 1px solid blue;
-//     height: 70%;
-//   }
-
-//   & > section > div:last-child {
-//     border: 1px solid blue;
-//     height: 30%;
-//   }
-// ;
-
-const SContainer = styled.div`
-  :hover {
+  &:hover {
     opacity: 0.7;
-    transition: 0.3s ease-out;
-  }
-
-  :not(:hover) {
-    transition: 0.3s ease-out;
+    transition: 0.4s ease-out;
   }
 `;
 
-const Image = styled.img<{ isEven: boolean }>`
-  width: 342px;
-  height: ${({ isEven }) => (isEven ? "338px" : "445px")};
+const SImageBox = styled.div<{ isEven: boolean }>`
+  height: ${({ isEven }) => (isEven ? "340px" : "445px")};
+`;
+
+const Image = styled.img`
+  width: 100%;
+  height: 100%;
   object-fit: cover;
 
   ${mobile(css`
@@ -71,9 +44,16 @@ const Image = styled.img<{ isEven: boolean }>`
 `;
 
 const Category = styled.div`
-  margin: 10px 0px;
+  margin: 15px 0px;
   color: ${({ theme }) => theme.colors.orange500};
   font-size: 14px;
+`;
+
+const STextBox = styled.div`
+  display: flex;
+  flex-flow: column nowrap;
+  row-gap: 5px;
+  line-height: 20px;
 `;
 
 const TextTitle = styled.div`
@@ -83,7 +63,6 @@ const TextTitle = styled.div`
 
 const TextLine1 = styled.div`
   color: ${({ theme }) => theme.colors.black400};
-  margin-bottom: 3px;
   font-size: 14px;
 
   ${mobile(css`
@@ -94,7 +73,6 @@ const TextLine1 = styled.div`
 
 const TextLine2 = styled.div`
   color: ${({ theme }) => theme.colors.black400};
-  margin-bottom: 3px;
   font-size: 16px;
 
   ${mobile(css`
@@ -109,7 +87,7 @@ const Date = styled.div`
   font-size: 12px;
 `;
 
-const ScrollContents = ({
+const MainPlaceCard = ({
   id,
   image,
   category,
@@ -122,24 +100,25 @@ const ScrollContents = ({
   link,
   isEven,
 }: RecommendProps) => {
-  const navigate = useNavigate();
   return (
-    <SContainer onClick={() => navigate(`/place/${id}`)}>
+    <SLink to={`/place/${id}`}>
       <section>
-        <div>
-          <Image src={image} alt={alt} isEven={isEven} />
-        </div>
+        <SImageBox isEven={isEven}>
+          <Image src={image} alt={alt} />
+        </SImageBox>
         <div>
           <Category>{category}</Category>
           <TextTitle>{textTitle}</TextTitle>
-          <AiOutlineLine size={30} />
-          <TextLine1>{textLine1}</TextLine1>
-          <TextLine2>{textLine2}</TextLine2>
-          <Date>{date}</Date>
+          <AiOutlineLine size={25} />
+          <STextBox>
+            <TextLine1>{textLine1}</TextLine1>
+            <TextLine2>{textLine2}</TextLine2>
+            <Date>{date}</Date>
+          </STextBox>
         </div>
       </section>
-    </SContainer>
+    </SLink>
   );
 };
 
-export default ScrollContents;
+export default MainPlaceCard;

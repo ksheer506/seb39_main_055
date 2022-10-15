@@ -19,7 +19,7 @@ export interface BannerProps {
   link: string;
 }
 
-const Banner = ({ image, summary, place, link }: BannerProps) => {
+const CarouselItem = ({ image, summary, place, link }: BannerProps) => {
   return (
     <SArticle>
       <SLink to={link}>
@@ -40,4 +40,4 @@ const Banner = ({ image, summary, place, link }: BannerProps) => {
   );
 };
 
-export default Banner;
+export default CarouselItem;
