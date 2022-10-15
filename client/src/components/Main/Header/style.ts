@@ -4,14 +4,13 @@ import styled, { css } from "styled-components";
 import { fontSizes, mobile, tablet } from "../../../assets";
 
 export const SArticle = styled.article`
-  width: 100vw;
+  width: 100%;
   height: 100%;
   overflow: hidden;
 `;
 
 export const SLink = styled(Link)`
   display: block;
-  width: 100%;
   height: 330px;
   overflow: hidden;
 
@@ -44,13 +43,13 @@ export const SSection = styled.section`
   font-size: 35px;
   overflow: hidden;
 
-  ${fontSizes("mainH2")}
+  ${fontSizes("mainH1")}
 
   ${tablet(
     css`
       padding-left: 18px;
       height: calc(100% - 300px);
-      ${fontSizes("mainH3")}
+      ${fontSizes("mainH2")}
     `
   )}
 
@@ -59,14 +58,13 @@ export const SSection = styled.section`
       padding-left: 10px;
       font-size: 22px;
       height: calc(100% - 270px);
-      ${fontSizes("mainH4")}
+      ${fontSizes("mainH3")}
     `
   )}
 `;
 
 export const SH1 = styled.h1`
   font-size: 1em;
-  font-weight: bold;
 `;
 
 export const SH2 = styled.h2`

@@ -5,10 +5,10 @@ import Img3 from "../../../assets/images/carousel/3.jpg";
 import Img4 from "../../../assets/images/carousel/4.jpg";
 import Img5 from "../../../assets/images/carousel/5.jpg";
 import Carousel from "../../Carousel/Carousel";
-import Banner, { BannerProps } from "./Banner";
+import CarouselItem, { BannerProps } from "./CarouselItem";
 
 const SHeader = styled.header`
-  width: 100vw;
+  width: 100%;
   height: max-content;
 `;
 
@@ -43,7 +43,12 @@ function bannerGenerator(details: BannerProps[]) {
   return details.map(({ image, summary, place, link }, i) => {
     return {
       item: (
-        <Banner image={image} summary={summary} place={place} link={link} />
+        <CarouselItem
+          image={image}
+          summary={summary}
+          place={place}
+          link={link}
+        />
       ),
       id: i,
     };

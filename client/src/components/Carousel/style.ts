@@ -73,19 +73,19 @@ interface ItemProps {
   animationTime: number;
 }
 
-export const SItemList = styled.li`
+export const SItemList = styled.li<ItemProps>`
   flex: 0 0 100vw;
   position: absolute;
   width: 100%;
   height: 100%;
   transform: translateX(100%);
   will-change: transform;
-  z-index: -1;
-  transition: ${({ animationTime }: ItemProps) => `${animationTime}ms`} all;
+  z-index: 0;
+  transition: ${({ animationTime }) => `${animationTime}ms`} all;
 
   &.main {
     transform: translateX(0%);
-    z-index: 1;
+    z-index: 2;
   }
 
   &.left {
