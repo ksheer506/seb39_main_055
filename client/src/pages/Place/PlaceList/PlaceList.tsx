@@ -3,7 +3,6 @@ import { useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 
 import {
-  Banner,
   Category,
   PlaceCardList,
   PlaceCardListHeader,
@@ -25,7 +24,6 @@ const PlaceList = () => {
 
   return (
     <SBox>
-      <Banner />
       <PlaceCardListHeader
         title={<SH1>펫 플레이스</SH1>}
         category={
