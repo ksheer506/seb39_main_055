@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import styled, { css } from "styled-components";
 
-import { fontSizes, mobile, tablet } from "../../../assets";
+import { colors, fontSizes, mobile, tablet } from "../../../assets";
 
 export const SArticle = styled.article`
   width: 100%;
@@ -71,6 +71,7 @@ export const SH2 = styled.h2`
   font-size: 0.7em;
   font-weight: lighter;
   line-height: 3.2rem;
+  color: ${colors("black250")};
 
   ${tablet(
     css`
