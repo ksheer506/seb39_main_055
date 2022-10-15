@@ -14,8 +14,7 @@ export const scrollDummyImg = [
     date: "2022.08.26~",
     alt: "호텔홍보이미지",
     textTitle: "세인트 존스 호텔",
-    textLine1: "애견 동반 전용 객실에서 편안한 휴식을!",
-    textLine2: "강릉해변의 아름다운 모래사장에서 즐거운 추억을 만들어보세요.",
+    textLine: "강릉해변의 아름다운 모래사장에서 즐거운 추억을 만들어보세요.",
     link: "https://withpet-two.vercel.app/place/24",
   },
   {
@@ -26,8 +25,7 @@ export const scrollDummyImg = [
     date: "2022.08.26~",
     alt: "카페음료이미지",
     textTitle: "서원안길",
-    textLine1: "서원안길, 건축가의 햇살좋은 카페",
-    textLine2: "반려견과 함께하는 달콤한 휴식 시간!",
+    textLine: "반려견과 함께하는 달콤한 휴식 시간!",
     link: "https://withpet-two.vercel.app/place/39",
   },
   {
@@ -38,8 +36,7 @@ export const scrollDummyImg = [
     date: "2022.08.26~",
     alt: "미용이미지",
     textTitle: "앙꼬네 강아지 미용실",
-    textLine1: "꼼꼼한 가위컷으로",
-    textLine2: "반려견에게 멋진 헤어스타일을 선물해보세요!",
+    textLine: "반려견에게 멋진 헤어스타일을 선물해보세요!",
     link: "https://withpet-two.vercel.app/place/38",
   },
   {
@@ -50,11 +47,10 @@ export const scrollDummyImg = [
     date: "2022.08.26~",
     alt: "운동장이미지",
     textTitle: "김포 DOG 힐링파크",
-    textLine1: "사계절 수영이 가능한 테마파크!",
-    textLine2: "반려견과 시원한 물놀이를 즐겨보세요~!",
+    textLine: "반려견과 시원한 물놀이를 즐겨보세요~!",
     link: "https://withpet-two.vercel.app/place/45",
   },
-  {
+  /* {
     id: 71,
     image: 비숑포차,
     category: "맛집",
@@ -62,8 +58,7 @@ export const scrollDummyImg = [
     date: "2022.08.26~",
     alt: "음식이미지",
     textTitle: "비숑포차",
-    textLine1: "귀여운 비숑과 한잔~",
-    textLine2: "비숑포차에서 맛있는 안주를 즐기세요!",
+    textLine: "비숑포차에서 맛있는 안주를 즐기세요!",
     link: "https://withpet-two.vercel.app/place/71",
   },
   {
@@ -74,8 +69,7 @@ export const scrollDummyImg = [
     date: "2022.08.26~",
     alt: "병원이미지",
     textTitle: "청담우리동물병원",
-    textLine1: "17명의 임상경험이 풍부한 수의사들이 정확한 진단 및 치료",
-    textLine2: "맞춤 프리미엄 서비스를 편안하게 이용해보세요!",
+    textLine: "맞춤 프리미엄 서비스를 편안하게 이용해보세요!",
     link: "https://withpet-two.vercel.app/place/56",
-  },
+  }, */
 ];

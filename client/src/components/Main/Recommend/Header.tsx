@@ -1,14 +1,12 @@
 import styled, { css } from "styled-components";
 
-import { mobile } from "../../../assets";
+import { colors, fontSizes, mobile } from "../../../assets";
 
-const Container = styled.div`
+const SHeader = styled.header`
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 20px;
-  padding: 0px 10px 20px 10px;
+  gap: 15px;
+  padding: 25px 10px;
   font-family: "ONE Mobile";
 
   ${mobile(css`
@@ -18,21 +16,19 @@ const Container = styled.div`
 
   & > h1 {
     color: ${({ theme }) => theme.colors.black500};
-    font-size: 38px;
-    font-style: normal;
-    text-align: center;
     font-weight: 400;
+
+    ${fontSizes("mainH1")}
   }
 `;
 
 const SubTitle = styled.div`
   font-family: "ONE Mobile";
   font-style: normal;
-  font-weight: 400;
   font-size: 20px;
   line-height: 22px;
-  color: #8d8d8d;
-  text-align: center;
+  color: ${colors("black250")};
+
   ${mobile(css`
     align-items: center;
   `)}
@@ -40,10 +36,12 @@ const SubTitle = styled.div`
 
 const Header = () => {
   return (
-    <Container>
+    <SHeader>
       <h1>오늘의 추천 플레이스</h1>
-      <SubTitle>반려동물과 함께 가볍게 떠나봐요.</SubTitle>
-    </Container>
+      <SubTitle>
+        이번 주말에 반려동물과 어디로 갈지 고민이라면? 윗펫에서 추천해드립니다.
+      </SubTitle>
+    </SHeader>
   );
 };
 
