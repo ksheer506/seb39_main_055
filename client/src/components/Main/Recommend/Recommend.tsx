@@ -1,4 +1,3 @@
-import { BsFillArrowRightCircleFill } from "react-icons/bs";
 import styled, { css } from "styled-components";
 
 import { mobile } from "../../../assets";

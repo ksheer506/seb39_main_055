@@ -51,7 +51,6 @@ const Category = styled.div`
 const STextBox = styled.div`
   display: flex;
   flex-flow: column nowrap;
-  /* row-gap: 5px; */
   line-height: 20px;
 `;
 

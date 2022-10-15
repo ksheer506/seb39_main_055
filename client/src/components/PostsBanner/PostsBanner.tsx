@@ -11,10 +11,8 @@ export const SLink = styled(Link)`
   gap: 20px 30px;
   width: 100%;
   height: max-content;
-  margin: -150px 0px 0px 0px;
   padding: 30px;
   background-color: #fff9e6;
-  cursor: pointer;
 `;
 
 export const STitle = styled.section`
