@@ -16,6 +16,7 @@ export const Container = styled.div`
 `;
 
 export const ABox = styled.div`
+  width: 100%;
   max-width: 1200px;
 `;
 
