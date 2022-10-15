@@ -13,8 +13,8 @@ export const theme = {
     black100: "#8d8d8d",
     black200: "#a5a5a5",
     black250: "#797979",
-    black300: "#434343",
-    black400: "#707070",
+    black300: "#707070",
+    black400: "#434343",
     black500: "#161616",
 
     orange010: "#FFF0C2",
@@ -23,11 +23,10 @@ export const theme = {
     orange500: "#ffc107",
   },
   fontSizes: {
-    mainH1: "40px",
-    mainH2: "35px",
-    mainH3: "30px",
-    mainH4: "25px",
-    mainH5: "20px",
+    mainH1: "35px",
+    mainH2: "30px",
+    mainH3: "25px",
+    mainH4: "20px",
   },
 };
 
