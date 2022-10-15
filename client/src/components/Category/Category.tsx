@@ -3,7 +3,7 @@ import { memo } from "react";
 import { useSearchParams } from "react-router-dom";
 
 import MenuIcon from "./MenuIcon";
-import { SCategoryMenu } from "./style";
+import { SCategoryUList } from "./style";
 
 // "/place/list?category=room"으로 연결되는 카테고리일 때
 export interface CategoryList {
@@ -59,7 +59,7 @@ const Category = memo(
     }, "");
 
     return (
-      <SCategoryMenu>
+      <SCategoryUList>
         {menuList.map(
           ({ menuText, baseLink, queryKey, queryValue, img, alt }) => {
             const pathTo = combineQueryStrings(
@@ -81,7 +81,7 @@ const Category = memo(
             );
           }
         )}
-      </SCategoryMenu>
+      </SCategoryUList>
     );
   }
 );

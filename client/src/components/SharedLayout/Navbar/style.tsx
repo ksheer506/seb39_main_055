@@ -1,13 +1,15 @@
 import { Link } from "react-router-dom";
 import styled, { css } from "styled-components";
 
-import { breakPoints, colors } from "../../../assets";
+import { bottomHoverLine, breakPoints, colors, mobile } from "../../../assets";
 import SearchBar from "../../SearchBar/SearchBar";
 
 export const SNav = styled.nav`
   position: fixed;
   display: flex;
+  flex-flow: column nowrap;
   justify-content: center;
+  align-items: center;
   width: 100%;
   background-color: #ffffff;
   box-shadow: 0px 1px 7px 0px #cecece;
@@ -19,9 +21,9 @@ export const SSection = styled.section`
   max-width: 1400px;
   padding: 0 35px;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  height: 60px;
+  height: 65px;
 
   & > img {
     width: 130px;
@@ -103,24 +105,7 @@ export const SLink = styled(Link)`
   margin-top: 3px;
   overflow: hidden;
 
-  &::after {
-    display: flex;
-    justify-content: center;
-    position: absolute;
-    content: "";
-    bottom: 0px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 0px;
-    height: 3px;
-    margin-top: 3px;
-    background-color: ${colors("orange075")};
-    transition: 0.4s all;
-  }
-
-  &:hover::after {
-    width: 80%;
-  }
+  ${bottomHoverLine}
 
   &:hover {
     color: ${colors("orange500")};
@@ -168,6 +153,26 @@ export const SHamberger = styled.div`
     height: 30px;
     border-radius: 50%;
   }
+`;
+
+export const SCategorySection = styled.section`
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  max-width: 1200px;
+  width: 100%;
+  height: 70px;
+
+  ${mobile(css`
+    justify-content: start;
+    overflow-x: scroll;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  `)}
 `;
 
 export const STab = styled.aside<{ isOpen: boolean }>`

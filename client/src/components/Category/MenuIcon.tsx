@@ -13,9 +13,8 @@ const MenuIcon = ({ img, alt, menuText, link, selected }: MenuIconProps) => {
     <SIconList>
       <SImgLink to={link} selected={selected}>
         <SIconImg src={img} alt={alt} />
+        <SIconText selected={selected}>{menuText}</SIconText>
       </SImgLink>
-
-      <SIconText selected={selected}>{menuText}</SIconText>
     </SIconList>
   );
 };

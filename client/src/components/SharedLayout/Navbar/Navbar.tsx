@@ -3,8 +3,11 @@ import { useNavigate } from "react-router-dom";
 
 import profile from "../../../assets/icons/user.png";
 import logo from "../../../assets/images/logo/logo.png";
+import { menuList } from "../../../constants";
 import { selectUser, selectUserInfos, useAppSelector } from "../../../redux";
+import Category from "../../Category/Category";
 import {
+  SCategorySection,
   Search,
   SHamberger,
   SLink,
@@ -69,6 +72,9 @@ const Navbar = () => {
           </STab>
         </SMenu>
       </SSection>
+      <SCategorySection>
+        <Category menuList={menuList} />
+      </SCategorySection>
     </SNav>
   );
 };

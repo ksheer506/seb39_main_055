@@ -5,10 +5,15 @@ import styled from "styled-components";
 import Footer from "./Footer/Footer";
 import Navbar from "./Navbar/Navbar";
 
+const SMain = styled.main`
+  overflow-x: hidden;
+`;
+
 const SSection = styled.section<{ isOverWidth: boolean }>`
   height: max-content;
-  padding-bottom: 60px; // === (nav 바 높이)
+  padding-bottom: 135px; // === (nav 바 높이)
   min-height: calc(100vh - 300px);
+
   /* max-width: ${({ isOverWidth }) => (isOverWidth ? "1600px" : "1200px")}; */
 `;
 
@@ -27,13 +32,13 @@ const SharedLayout = () => {
   }, [pathname]);
 
   return (
-    <div>
+    <SMain>
       <Navbar />
       <SSection isOverWidth={isOverWidth}>
         <Outlet />
       </SSection>
       <Footer />
-    </div>
+    </SMain>
   );
 };
 
