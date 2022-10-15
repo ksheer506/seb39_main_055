@@ -30,7 +30,7 @@ const SContentBox = styled.div`
   justify-content: center;
   width: 100%;
   max-width: 1200px;
-  row-gap: 100px;
+  row-gap: 150px;
 
   ${tablet(css`
     row-gap: 100px;
