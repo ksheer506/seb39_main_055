@@ -23,6 +23,8 @@ const SContentBox = styled.div`
 
   ${mobile(css`
     height: calc(100vh - 70px);
+    height: -webkit-fill-available;
+    height: fill-available;
   `)}
 `;
 
