@@ -26,7 +26,7 @@ interface CarouselProps {
   animationTime?: number;
 }
 
-const Carousel = ({ items, animationTime = 800 }: CarouselProps) => {
+const Carousel = ({ items, animationTime = 600 }: CarouselProps) => {
   if (items.length < 3) {
     const concatenation = [null, null].map((_, i) => ({
       ...items[i % items.length],
@@ -50,7 +50,7 @@ const Carousel = ({ items, animationTime = 800 }: CarouselProps) => {
 
   const throttledIndexer = useCallback(
     (command: "next" | "prev") => {
-      throttle(mainIndexer, animationTime / 1.8, command);
+      throttle(mainIndexer, animationTime * 1.1, command);
     },
     [animationTime, mainIndexer]
   );
