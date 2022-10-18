@@ -27,6 +27,10 @@ export const theme = {
     mainH2: "30px",
     mainH3: "25px",
     mainH4: "20px",
+    mainH5: "15px",
+    mobileH1: "18px",
+    mobileH2: "18px",
+    mobileH3: "15px",
   },
 };
 
