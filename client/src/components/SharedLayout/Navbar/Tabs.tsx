@@ -19,7 +19,6 @@ export const SUserContainer = styled.section`
     border: 0;
     padding: 10px 20px;
     font-size: 14px;
-    z-index: 2;
     transition: 600ms all;
   }
 

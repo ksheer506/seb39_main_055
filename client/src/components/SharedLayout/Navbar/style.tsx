@@ -13,7 +13,7 @@ export const Nav = styled.nav`
   width: 100%;
   background-color: white;
   box-shadow: 0px 1px 7px 0px #cecece;
-  z-index: 3;
+  z-index: 2;
 `;
 
 export const Section = styled.section`
@@ -190,6 +190,7 @@ export const Tab = styled.div<{ isOpen: boolean }>`
   animation: dropdown 500ms;
   border-radius: 10px;
   overflow: hidden;
+  z-index: 3;
 
   @keyframes dropdown {
     from {
