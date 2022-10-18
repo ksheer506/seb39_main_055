@@ -57,7 +57,7 @@ const SImage = styled.img`
   }
 
   ${breakPoints(
-    1078,
+    1108,
     css`
       &:last-child {
         display: block;
