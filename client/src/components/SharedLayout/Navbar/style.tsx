@@ -4,19 +4,19 @@ import styled, { css } from "styled-components";
 import { bottomHoverLine, breakPoints, colors, mobile } from "../../../assets";
 import SearchBar from "../../SearchBar/SearchBar";
 
-export const SNav = styled.nav`
+export const Nav = styled.nav`
   position: fixed;
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
   width: 100%;
-  background-color: #ffffff;
+  background-color: white;
   box-shadow: 0px 1px 7px 0px #cecece;
   z-index: 3;
 `;
 
-export const SSection = styled.section`
+export const Section = styled.section`
   width: 100%;
   max-width: 1400px;
   padding: 0 35px;
@@ -25,15 +25,17 @@ export const SSection = styled.section`
   align-items: center;
   height: 65px;
 
+  @media screen and (max-width: ${({ theme }) => theme.breakPoints.tablet}) {
+    padding: 20px;
+  }
+`;
+
+export const LogoLink = styled(Link)`
   & > img {
     width: 130px;
     height: 35px;
     margin-top: -5px;
     cursor: pointer;
-  }
-
-  @media screen and (max-width: ${({ theme }) => theme.breakPoints.tablet}) {
-    padding: 20px;
   }
 `;
 
@@ -62,7 +64,7 @@ export const Search = styled(SearchBar)`
   )}
 `;
 
-export const SMenu = styled.div`
+export const Menu = styled.div`
   flex: 1 0 auto;
   position: relative;
   display: flex;
@@ -94,7 +96,7 @@ export const SMenu = styled.div`
   }
 `;
 
-export const SLink = styled(Link)`
+export const MenuLink = styled(Link)`
   display: flex;
   position: relative;
   align-items: center;
@@ -130,32 +132,33 @@ export const SLink = styled(Link)`
   }
 `;
 
-export const SHamberger = styled.div`
+export const UserBox = styled.div`
   display: flex;
+  flex-flow: row nowrap;
   justify-content: center;
   align-items: center;
-  gap: 10px;
+  gap: 5px;
   padding: 5px 15px;
   margin-left: 10px;
   border-radius: 25px;
+  background-color: ${colors("black010")};
   color: #161616;
   font-size: 18px;
-  transition: all 0.4s;
   transition: 0.4s all;
 
   &:hover {
-    ${colors("black010")}
-    cursor: pointer;
+    background-color: ${colors("black010")};
+    box-shadow: 0px 0px 5px #a5a5a5;
   }
 
-  & > img:first-child {
+  & > img {
     width: 30px;
     height: 30px;
     border-radius: 50%;
   }
 `;
 
-export const SCategorySection = styled.section`
+export const CategorySection = styled.section`
   display: flex;
   flex-flow: row nowrap;
   justify-content: center;
@@ -175,22 +178,18 @@ export const SCategorySection = styled.section`
   `)}
 `;
 
-export const STab = styled.aside<{ isOpen: boolean }>`
+export const Tab = styled.div<{ isOpen: boolean }>`
   position: absolute;
   top: 50px;
   right: 0;
   display: ${({ isOpen }) => (isOpen ? "flex" : "none")};
   flex-direction: column;
-  width: 200px;
-  padding: 20px 0;
-  box-shadow: rgb(0 0 0 / 40%) 0px 0px 4px 0px;
-  border-radius: 10px;
-  color: ${({ theme }) => theme.colors.black300};
+  width: 150px;
+  box-shadow: 0px 0px 5px 0px ${colors("black100")};
   background-color: white;
-  font-size: 14px;
-  animation-name: dropdown;
-  animation-duration: 500ms;
-  animation-direction: normal;
+  animation: dropdown 500ms;
+  border-radius: 10px;
+  overflow: hidden;
 
   @keyframes dropdown {
     from {
