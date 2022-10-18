@@ -81,7 +81,7 @@ export const Menu = styled.div`
     cursor: pointer;
 
     &:hover {
-      background-color: ${({ theme }) => theme.colors.black010};
+      background-color: ${colors("black010")};
     }
   }
 
@@ -93,6 +93,10 @@ export const Menu = styled.div`
     margin: 0px 8px;
     border-radius: 100%;
     background-color: ${colors("black050")};
+
+    ${mobile(css`
+      display: none;
+    `)}
   }
 `;
 
