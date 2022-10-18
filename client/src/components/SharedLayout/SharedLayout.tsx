@@ -1,19 +1,35 @@
 import { useEffect, useState } from "react";
 import { Outlet, useLocation } from "react-router-dom";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
+import { mobile } from "../../assets";
 import Footer from "./Footer/Footer";
-import Navbar from "./Navbar/Navbar";
+import MobileNavbar from "./Navbar/MobileNavbar";
+import TopNavbar from "./Navbar/TopNavbar";
 
 const SMain = styled.main`
   overflow-x: hidden;
 `;
 
+const SContentBox = styled.div`
+  position: relative;
+  display: flex;
+  flex-flow: column nowrap;
+  width: 100%;
+  left: 0;
+  padding: 0;
+  overflow-x: hidden;
+  overflow-y: scroll;
+
+  ${mobile(css`
+    height: calc(100vh - 70px);
+  `)}
+`;
+
 const SSection = styled.section<{ isOverWidth: boolean }>`
   height: max-content;
   padding-bottom: 135px; // === (nav 바 높이)
-  min-height: calc(100vh - 300px);
-
+  /* min-height: calc(100vh - 300px); */
   /* max-width: ${({ isOverWidth }) => (isOverWidth ? "1600px" : "1200px")}; */
 `;
 
@@ -33,11 +49,15 @@ const SharedLayout = () => {
 
   return (
     <SMain>
-      <Navbar />
-      <SSection isOverWidth={isOverWidth}>
-        <Outlet />
-      </SSection>
-      <Footer />
+      <TopNavbar />
+      <SContentBox>
+        <SSection isOverWidth={isOverWidth}>
+          <Outlet />
+        </SSection>
+        <Footer />
+      </SContentBox>
+
+      <MobileNavbar />
     </SMain>
   );
 };
