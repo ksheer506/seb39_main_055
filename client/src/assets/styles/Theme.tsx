@@ -10,7 +10,7 @@ export const theme = {
     black010: "#F5F5F5",
     black025: "#eeeeee",
     black050: "#D6D6D6",
-    black100: "#8d8d8d",
+    black100: "#c0c0c0",
     black200: "#a5a5a5",
     black250: "#797979",
     black300: "#707070",
