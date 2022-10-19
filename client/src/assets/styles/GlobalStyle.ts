@@ -63,6 +63,13 @@ const GlobalStyle = createGlobalStyle`
   div.Toastify__toast-container--top-center {
     top: 70px;
   }
+
+  div.toastui-editor-contents {
+    z-index: 1;
+  }
+  div.toastui-editor-popup {
+    z-index: 2;
+  }
 `;
 
 export default GlobalStyle;
