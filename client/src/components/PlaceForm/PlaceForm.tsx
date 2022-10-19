@@ -179,7 +179,6 @@ const NewPlace = ({ isEditPage, state }: Prop) => {
             defaultId={defaultId}
             setDefaultId={setDefaultId}
             isError={imagesError}
-            setIsError={setImagesError}
           />
         </section>
         <section>

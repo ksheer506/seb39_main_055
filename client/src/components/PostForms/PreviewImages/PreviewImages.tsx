@@ -1,9 +1,7 @@
-/* eslint-disable no-restricted-syntax */
-/* eslint-disable @typescript-eslint/ban-ts-comment */
-/* eslint-disable no-return-assign */
-/* eslint-disable react/no-array-index-key */
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable consistent-return */
+/* eslint-disable no-restricted-syntax */
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import {
   ChangeEvent,
   Dispatch,
@@ -14,7 +12,6 @@ import {
 } from "react";
 import { toast } from "react-toastify";
 
-import { useWebWorker } from "../../../hooks";
 import { ThreadImages } from "../../../types";
 import { extractImageInfos, throttle } from "../../../utils";
 import { InteractiveImage, useModal } from "../..";
@@ -40,7 +37,6 @@ export interface PostImagesProps {
   defaultId: string;
   setDefaultId: Dispatch<SetStateAction<string>>;
   isError?: boolean;
-  setIsError?: Dispatch<SetStateAction<boolean>>;
 }
 
 interface WorkerMessage {
@@ -60,78 +56,83 @@ const PreviewImages = ({
   defaultId,
   setDefaultId,
   isError,
-  setIsError,
 }: PostImagesProps) => {
-  const { workers } = useWebWorker("./utils/imageLoad.worker.ts");
-  /* const workers = useRef<Worker[]>([]); */
+  const workers = useRef<Worker[]>([]);
   const canvas = useRef<HTMLCanvasElement>(null);
   const { openModal, closeModal } = useModal();
+
+  const handleUnsupportedDevice = useCallback(async (images: FileList) => {
+    const imgInfos = await extractImageInfos([...images]);
+
+    for await (const imagePacking of imgInfos) {
+      setImages((prev) => [...prev, imagePacking]);
+
+      await new Promise((resolve) => {
+        setTimeout(resolve, 0);
+      });
+    }
+  }, []);
+
+  const postImagesToWorkers = useCallback((images: FileList) => {
+    const workerInst = workers.current.length;
+    const L = Math.ceil((images || []).length / workerInst);
+
+    workers.current.forEach((wk, i) => {
+      const startI = L * i + i;
+      let endI = startI + L + 1;
+      if (endI > images.length) {
+        endI = images.length;
+      }
+
+      const imagePacking = [...images].slice(startI, endI);
+      const canvas = document.createElement("canvas");
+      // @ts-ignore
+      const offscreen = canvas?.transferControlToOffscreen();
+
+      wk.addEventListener(
+        "message",
+        function callee({ data }: MessageEvent<WorkerMessage>) {
+          const { images, error } = data;
+
+          if (images.length) {
+            setImages((prev) => [...prev, ...images]);
+          }
+          if (error) {
+            // 한번에 둘 이상의 Toast가 뜨지 않도록 throttling
+            throttle(() => toast.error(error), 100);
+          }
+
+          wk.removeEventListener("message", callee);
+        }
+      );
+
+      wk.postMessage({ images: imagePacking, canvas: offscreen }, [offscreen]);
+    });
+  }, []);
 
   const handleSelectImages = useCallback(
     async (e: ChangeEvent<HTMLInputElement>) => {
       const selectedImages = e.target.files;
-      const workerInst = workers.length;
-      const L = Math.ceil((selectedImages || []).length / workerInst);
 
       if (!selectedImages?.length) return;
+
       // offscreenCanvas 미지원 브라우저: State 분할 업데이트
       if (!isOffscreenCanvasAvailable(canvas.current)) {
-        const imgInfos = await extractImageInfos([...selectedImages]);
+        await handleUnsupportedDevice(selectedImages);
 
-        for await (const imagePacking of imgInfos) {
-          setImages((prev) => [...prev, imagePacking]);
-
-          await new Promise((resolve) => {
-            setTimeout(resolve, 0);
-          });
-        }
+        return;
       }
 
-      workers.forEach((wk, i) => {
-        const startI = L * i + i;
-        let endI = startI + L + 1;
-        if (endI > selectedImages.length) {
-          endI = selectedImages.length;
-        }
-        const imagePacking = [...selectedImages].slice(startI, endI);
-        const canvas = document.createElement("canvas");
-        // @ts-ignore
-        const offscreen = canvas?.transferControlToOffscreen();
-
-        wk.addEventListener(
-          "message",
-          function callee({ data }: MessageEvent<WorkerMessage>) {
-            const { images, error } = data;
-
-            if (images.length) {
-              setImages((prev) => [...prev, ...images]);
-            }
-            if (error) {
-              // 한번에 둘 이상의 Toast가 뜨지 않도록 throttling
-              throttle(() => toast.error(error), 100);
-            }
-
-            wk.removeEventListener("message", callee);
-          }
-        );
-
-        wk.postMessage({ images: imagePacking, canvas: offscreen }, [
-          offscreen,
-        ]);
-      });
-
-      if (setIsError) {
-        setIsError(false);
-      }
+      postImagesToWorkers(selectedImages);
     },
     []
   );
 
-  const removeImg = (targetId: string) => {
+  const removeImg = useCallback((targetId: string) => {
     setImages((prev) => prev.filter((image) => image.id !== targetId));
-  };
+  }, []);
 
-  /* useEffect(() => {
+  useEffect(() => {
     if (!workers.current) return;
 
     const maxWorker = navigator.hardwareConcurrency || 2;
@@ -145,7 +146,7 @@ const PreviewImages = ({
     return () => {
       workers.current.forEach((wk) => wk.terminate());
     };
-  }, []); */
+  }, []);
 
   const defaultImage =
     images.filter(({ id }) => {
