@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { ChangeEvent, KeyboardEvent, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
@@ -55,11 +55,11 @@ const SearchBar = ({ className }: SearchBarProps) => {
   const [inputValue, setInputValue] = useState("");
   const defaultResultpath = `/search?search=${inputValue}&category=all`;
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
   };
 
-  const handleInputKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
+  const handleInputKeyPress = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter" && inputValue) {
       navigate(defaultResultpath);
       setInputValue("");
@@ -67,7 +67,9 @@ const SearchBar = ({ className }: SearchBarProps) => {
   };
 
   const handleSearchIconClick = () => {
-    if (inputValue) navigate(defaultResultpath);
+    if (inputValue) {
+      navigate(defaultResultpath);
+    }
   };
 
   return (
