@@ -31,6 +31,7 @@ export const theme = {
     mobileH1: "18px",
     mobileH2: "18px",
     mobileH3: "15px",
+    subPageH1: "35px",
   },
 };
 
