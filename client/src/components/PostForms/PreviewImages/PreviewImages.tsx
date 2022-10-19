@@ -14,6 +14,7 @@ import {
 } from "react";
 import { toast } from "react-toastify";
 
+import { useWebWorker } from "../../../hooks";
 import { ThreadImages } from "../../../types";
 import { extractImageInfos, throttle } from "../../../utils";
 import { InteractiveImage, useModal } from "../..";
@@ -61,14 +62,15 @@ const PreviewImages = ({
   isError,
   setIsError,
 }: PostImagesProps) => {
-  const workers = useRef<Worker[]>([]);
+  const { workers } = useWebWorker("./utils/imageLoad.worker.ts");
+  /* const workers = useRef<Worker[]>([]); */
   const canvas = useRef<HTMLCanvasElement>(null);
   const { openModal, closeModal } = useModal();
 
   const handleSelectImages = useCallback(
     async (e: ChangeEvent<HTMLInputElement>) => {
       const selectedImages = e.target.files;
-      const workerInst = workers.current.length;
+      const workerInst = workers.length;
       const L = Math.ceil((selectedImages || []).length / workerInst);
 
       if (!selectedImages?.length) return;
@@ -85,7 +87,7 @@ const PreviewImages = ({
         }
       }
 
-      workers.current.forEach((wk, i) => {
+      workers.forEach((wk, i) => {
         const startI = L * i + i;
         let endI = startI + L + 1;
         if (endI > selectedImages.length) {
@@ -129,7 +131,7 @@ const PreviewImages = ({
     setImages((prev) => prev.filter((image) => image.id !== targetId));
   };
 
-  useEffect(() => {
+  /* useEffect(() => {
     if (!workers.current) return;
 
     const maxWorker = navigator.hardwareConcurrency || 2;
@@ -143,7 +145,7 @@ const PreviewImages = ({
     return () => {
       workers.current.forEach((wk) => wk.terminate());
     };
-  }, []);
+  }, []); */
 
   const defaultImage =
     images.filter(({ id }) => {

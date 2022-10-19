@@ -4,3 +4,4 @@ export { default as useGeolocation } from "./useGeolocation";
 export * from "./useIntersect";
 export { default as useRedirect } from "./useRedirect";
 export * from "./useValidate";
+export { default as useWebWorker } from "./useWebWorker";
