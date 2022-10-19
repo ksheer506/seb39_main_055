@@ -145,10 +145,10 @@ const PreviewImages = ({
     };
   }, []);
 
-  const defaultImage = images.filter(({ id }, i) => {
-    if (!defaultId) return i === 0;
-    return id === defaultId;
-  })[0];
+  const defaultImage =
+    images.filter(({ id }) => {
+      return id === defaultId;
+    })[0] || images[0];
 
   return (
     <SImageAside>
