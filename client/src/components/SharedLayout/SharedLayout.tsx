@@ -15,45 +15,37 @@ const SContentBox = styled.div`
   position: relative;
   display: flex;
   flex-flow: column nowrap;
-  width: 100%;
+  justify-content: center;
+  align-items: center;
+
   left: 0;
-  padding: 0;
+  padding-top: 135px; // === (nav 바 높이)
   overflow-x: hidden;
   overflow-y: scroll;
 
   ${mobile(css`
     height: calc(100vh - 70px);
-    height: -webkit-fill-available;
-    height: fill-available;
   `)}
 `;
 
 const SSection = styled.section<{ isOverWidth: boolean }>`
+  width: 100%;
   height: max-content;
-  padding-bottom: 135px; // === (nav 바 높이)
+  padding-bottom: 135px;
   /* min-height: calc(100vh - 300px); */
-  /* max-width: ${({ isOverWidth }) => (isOverWidth ? "1600px" : "1200px")}; */
+  max-width: ${({ isOverWidth }) => (isOverWidth ? "1600px" : "1200px")};
 `;
 
 const overWidthPaths = ["/search", "/place/list"];
 
 const SharedLayout = () => {
   const { pathname } = useLocation();
-  const [isOverWidth, setIsOverWidth] = useState(false);
-
-  useEffect(() => {
-    if (overWidthPaths.includes(pathname)) {
-      setIsOverWidth(true);
-      return;
-    }
-    setIsOverWidth(false);
-  }, [pathname]);
 
   return (
     <SMain>
       <TopNavbar />
       <SContentBox>
-        <SSection isOverWidth={isOverWidth}>
+        <SSection isOverWidth={overWidthPaths.includes(pathname)}>
           <Outlet />
         </SSection>
         <Footer />
