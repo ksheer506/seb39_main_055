@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-export const SContainer = styled.li`
+export const SLink = styled(Link)`
   display: flex;
   height: 100px;
   width: 99%;
@@ -54,7 +54,6 @@ interface Prop {
 }
 
 const PlaceCard = ({ img, location, name, storeId }: Prop) => {
-  const navigate = useNavigate();
   const [province, district] = location.match(/(.*?)[시|구|군]/g)!;
 
   if (province.length <= 3) {
@@ -65,13 +64,13 @@ const PlaceCard = ({ img, location, name, storeId }: Prop) => {
   }
 
   return (
-    <SContainer onClick={() => navigate(`/place/${storeId}`)}>
+    <SLink to={`/place/${storeId}`}>
       <img src={img} alt="place" />
       <div>
         <span>{location}</span>
         <p>{name}</p>
       </div>
-    </SContainer>
+    </SLink>
   );
 };
 

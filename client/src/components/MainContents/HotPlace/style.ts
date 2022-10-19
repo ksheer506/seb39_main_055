@@ -1,5 +1,6 @@
 import styled from "styled-components";
 
+import { colors, fontSizes } from "../../../assets";
 import LoadingSpinner from "../../LoadingSpinner/LoadingSpinner";
 
 export const Container = styled.div`
@@ -7,19 +8,18 @@ export const Container = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
     gap: 20px;
+    padding: 25px 10px;
     height: 174px;
-    background-color: #f8f8fa;
 
     & > h3 {
-      color: ${({ theme }) => theme.colors.black500};
-      font-size: 38px;
+      color: ${colors("black500")};
+      ${fontSizes("mainH1")};
     }
 
     & > p {
       color: #707070;
-      font-size: 20px;
+      ${fontSizes("mainH4")}
     }
 
     @media screen and (max-width: ${({ theme }) => theme.breakPoints.mobile}) {

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { MouseEvent, useState } from "react";
 import { useQuery } from "react-query";
 
 import { getPlaceList } from "../../../apis";
@@ -15,30 +15,30 @@ import {
 } from "./style";
 
 const HotPlace = () => {
-  const [buttonIndex, setButtonIndex] = useState<string | number>(0);
+  const [buttonIndex, setButtonIndex] = useState(0);
 
-  const handleBtnClick: React.MouseEventHandler<HTMLButtonElement> = (
-    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
-  ) => {
-    setButtonIndex(Number((event.target as HTMLButtonElement).value));
+  const handleBtnClick = ({ target }: MouseEvent<HTMLButtonElement>) => {
+    if (!(target instanceof HTMLButtonElement)) return;
+
+    setButtonIndex(Number(target.value));
   };
 
-  const { data, isLoading } = useQuery(
+  /* const { data, isLoading } = useQuery(
     ["hotPlace", DUMMY_CATEGORY_LIST[buttonIndex as number]],
     () => getPlaceList(DUMMY_CATEGORY_LIST[buttonIndex as number])
-  );
+  ); */
 
   return (
     <Container>
       <header>
-        <h3>요즘 많이 찾는 핫플</h3>
-        <p>나의 반려동물과 함께 잊지못할 추억을 쌓아보세요.</p>
+        <h3>요즘 많이 찾는 핫 플레이스</h3>
+        <p>다른 사람들이 많이 찾는 장소는?</p>
       </header>
       <SSection>
         <SImgContainer>
-          {data && data[0] && (
+          {/* {data && data[0] && (
             <img src={data[0].storeImages[0].storeImage} alt="hotel" />
-          )}
+          )} */}
         </SImgContainer>
         <SMainContainer>
           <SButtonContainer>
@@ -56,7 +56,7 @@ const HotPlace = () => {
               </React.Fragment>
             ))}
           </SButtonContainer>
-          <SListContainer>
+          {/* <SListContainer>
             {isLoading ? (
               <SLoading />
             ) : (
@@ -70,7 +70,7 @@ const HotPlace = () => {
                 />
               ))
             )}
-          </SListContainer>
+          </SListContainer> */}
         </SMainContainer>
       </SSection>
     </Container>
