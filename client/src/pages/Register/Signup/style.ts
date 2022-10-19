@@ -1,7 +1,7 @@
 import { BiHide, BiShow } from "react-icons/bi";
 import styled, { css } from "styled-components";
 
-import { colors, formBorders } from "../../../assets";
+import { colors, fontSizes, formBorders } from "../../../assets";
 import { ButtonOrange } from "../../../components";
 
 export const SContainer = styled.div`
@@ -13,9 +13,8 @@ export const SContainer = styled.div`
   min-height: calc(100vh - 380px);
 
   & > h1 {
-    margin-bottom: 64px;
-    color: #161616;
-    font-size: 32px;
+    ${fontSizes("subPageH1")}
+    padding: 50px;
   }
 
   & > form {

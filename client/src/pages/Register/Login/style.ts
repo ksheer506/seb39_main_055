@@ -2,7 +2,7 @@ import { BiHide, BiShow } from "react-icons/bi";
 import { Link } from "react-router-dom";
 import styled, { css } from "styled-components";
 
-import { colors, formBorders, mobile } from "../../../assets";
+import { colors, fontSizes, formBorders, mobile } from "../../../assets";
 import {
   ButtonOrange,
   ButtonWhite,
@@ -15,7 +15,8 @@ export const SBox = styled.div`
   flex-flow: column wrap;
   justify-content: center;
   align-items: center;
-  height: 1000px;
+  height: max-content;
+  margin: 100px 0px;
 
   ${mobile(css`
     width: 100vw;
@@ -24,9 +25,8 @@ export const SBox = styled.div`
 `;
 
 export const SH1 = styled.h1`
-  color: #161616;
-  font-size: 32px;
-  padding: 32px;
+  ${fontSizes("subPageH1")}
+  padding: 50px;
 `;
 
 export const SLoginSection = styled.section`
