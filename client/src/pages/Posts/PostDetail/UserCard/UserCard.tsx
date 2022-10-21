@@ -1,44 +1,51 @@
 import { useMutation } from "react-query";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 
 import { deletePost } from "../../../../apis";
 import { Dots } from "../../../../components";
-import { useAppSelector } from "../../../../redux";
+import { selectUser, useAppSelector } from "../../../../redux";
 import { Thread } from "../../../../types";
 import { getDateToString } from "../../../../utils";
 import { SUserInfo, SUtils } from "./style";
 
-interface Prop {
-  data: Thread | undefined;
+interface Props {
+  data?: Thread;
 }
 
-const UserCard = ({ data }: Prop) => {
+const UserCard = ({ data }: Props) => {
   const navigate = useNavigate();
-  const { userInfos } = useAppSelector((state) => state.user);
+  const { userInfos } = useAppSelector(selectUser);
   const { mutate } = useMutation(deletePost, {
     onSuccess: () => navigate("/post/list"),
   });
 
+  if (!data) {
+    return <Navigate to="/not-found" />;
+  }
+
+  const { user, threadId, updatedAt, body, threadImages } = data;
+
   return (
     <SUtils>
       <SUserInfo>
-        <img src={data?.user.image} alt="profile" />
-        <span>{data?.user.nickname}</span>
-        <span>{getDateToString(data?.updatedAt as string)}</span>
+        <img src={user?.image} alt="profile" />
+        <span>{user?.nickname}</span>
+        <span>{getDateToString(updatedAt)}</span>
       </SUserInfo>
-      {userInfos?.userId === data?.user.userId && (
+      {userInfos?.userId === user?.userId && (
         <Dots
           deleteModalTitle="댕댕이 숲의 기록을 삭제하시겠습니까?"
           onEdit={() =>
             navigate("/post/edit", {
               state: {
-                body: data?.body,
-                threadId: data?.threadId,
-                threadImages: data?.threadImages,
+                body,
+                threadId,
+                threadImages,
+                updatedAt,
               },
             })
           }
-          onDelete={() => mutate(data?.threadId as number)}
+          onDelete={() => mutate(threadId)}
         />
       )}
     </SUtils>

@@ -117,7 +117,7 @@ const PreviewImages = ({
       if (!selectedImages?.length) return;
 
       // offscreenCanvas 미지원 브라우저
-      if (isOffscreenCanvasAvailable(canvas.current)) {
+      if (!isOffscreenCanvasAvailable(canvas.current)) {
         await handleUnsupportedDevice(selectedImages);
 
         return;
