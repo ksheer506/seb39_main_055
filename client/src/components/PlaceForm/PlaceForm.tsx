@@ -18,7 +18,13 @@ import {
 import { Checkbox, Input, SearchAddress, TextArea } from "..";
 import { ErrorModal, useModal } from "../Modal";
 import PreviewImages from "../PostForms/PreviewImages/PreviewImages";
-import { SButton, SCheckboxContainer, SContainer, SForm } from "./style";
+import {
+  SButton,
+  SCheckboxContainer,
+  SContainer,
+  SError,
+  SForm,
+} from "./style";
 
 interface State {
   storeId: string;
@@ -42,7 +48,6 @@ const NewPlace = ({ isEditPage, state }: Prop) => {
   const navigate = useNavigate();
   const [images, setImages] = useState<ThreadImages[]>([]);
   const [imagesError, setImagesError] = useState(false);
-  const [defaultId, setDefaultId] = useState("");
   const { checkboxValue, handleCheckboxClick, setCheckboxValue } =
     useCheckbox("숙소");
   const [nameValue, nameError, handleName, checkName, setNameValue] =
@@ -168,6 +173,15 @@ const NewPlace = ({ isEditPage, state }: Prop) => {
     setDescriptionValue,
   ]);
 
+  const imageErrorMsg = useMemo(
+    () => (
+      <SError isError={imagesError}>
+        <p>대표사진을 5장 이상 등록해주세요.</p>
+      </SError>
+    ),
+    [imagesError]
+  );
+
   return (
     <SContainer>
       <h1>{isEditPage ? "매장 수정" : "매장 등록"}</h1>
@@ -176,9 +190,7 @@ const NewPlace = ({ isEditPage, state }: Prop) => {
           <PreviewImages
             images={images}
             setImages={setImages}
-            defaultId={defaultId}
-            setDefaultId={setDefaultId}
-            isError={imagesError}
+            ErrorMessage={imageErrorMsg}
           />
         </section>
         <section>

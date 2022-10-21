@@ -5,10 +5,12 @@
 import {
   ChangeEvent,
   Dispatch,
+  ReactNode,
   SetStateAction,
   useCallback,
   useEffect,
   useRef,
+  useState,
 } from "react";
 import { toast } from "react-toastify";
 
@@ -22,7 +24,6 @@ import {
   SaLabel,
   SbBox,
   SCanvas,
-  SError,
   SFileInput,
   SImageAside,
   SList,
@@ -34,9 +35,7 @@ import {
 export interface PostImagesProps {
   images: ThreadImages[];
   setImages: Dispatch<SetStateAction<ThreadImages[]>>;
-  defaultId: string;
-  setDefaultId: Dispatch<SetStateAction<string>>;
-  isError?: boolean;
+  ErrorMessage?: ReactNode;
 }
 
 interface WorkerMessage {
@@ -53,24 +52,25 @@ function isOffscreenCanvasAvailable(canvas: any) {
 const PreviewImages = ({
   images,
   setImages,
-  defaultId,
-  setDefaultId,
-  isError,
+  ErrorMessage,
 }: PostImagesProps) => {
   const workers = useRef<Worker[]>([]);
   const canvas = useRef<HTMLCanvasElement>(null);
+  const [defaultId, setDefaultId] = useState("");
   const { openModal, closeModal } = useModal();
 
   const handleUnsupportedDevice = useCallback(async (images: FileList) => {
     const imgInfos = await extractImageInfos([...images]);
 
-    for await (const imagePacking of imgInfos) {
-      setImages((prev) => [...prev, imagePacking]);
-
-      await new Promise((resolve) => {
-        setTimeout(resolve, 0);
+    setImages((prev) => [...prev, ...imgInfos]);
+    /* for await (const imagePacking of imgInfos) {
+      await new Promise<void>((resolve) => {
+        setTimeout(() => {
+          setImages((prev) => [...prev, imagePacking]);
+          resolve();
+        }, 0);
       });
-    }
+    } */
   }, []);
 
   const postImagesToWorkers = useCallback((images: FileList) => {
@@ -116,8 +116,8 @@ const PreviewImages = ({
 
       if (!selectedImages?.length) return;
 
-      // offscreenCanvas 미지원 브라우저: State 분할 업데이트
-      if (!isOffscreenCanvasAvailable(canvas.current)) {
+      // offscreenCanvas 미지원 브라우저
+      if (isOffscreenCanvasAvailable(canvas.current)) {
         await handleUnsupportedDevice(selectedImages);
 
         return;
@@ -149,9 +149,7 @@ const PreviewImages = ({
   }, []);
 
   const defaultImage =
-    images.filter(({ id }) => {
-      return id === defaultId;
-    })[0] || images[0];
+    images.filter(({ id }) => id === defaultId)[0] || images[0];
 
   return (
     <SImageAside>
@@ -183,9 +181,7 @@ const PreviewImages = ({
           <p>대표사진 변경</p>
           <SMore />
         </SaButton>
-        <SError isError={isError}>
-          <p>대표사진을 5장 이상 등록해주세요.</p>
-        </SError>
+        {ErrorMessage}
       </SaBox>
       <SThumbnailUList>
         {images.map(({ uri, id }, i) => (

@@ -82,3 +82,11 @@ export const SButton = styled(ButtonOrange)`
     margin: 0 auto;
   }
 `;
+
+export const SError = styled.div<{ isError: boolean | undefined }>`
+  display: ${({ isError }) => (isError ? "flex" : "none")};
+  justify-content: center;
+  margin-top: 15px;
+  color: #f53a3a;
+  font-size: 12px;
+`;
