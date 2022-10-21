@@ -41,7 +41,6 @@ const PostForms = ({
   mutateOptions,
 }: PostFormsProps) => {
   const [images, setImages] = useState<ThreadImages[]>(threadImages || []);
-  const [defaultId, setDefaultId] = useState("");
   const [bodyErr, setBodyErr] = useState(false);
   const editorRef = useRef<Editor>(null);
   const navigate = useNavigate();
@@ -71,7 +70,10 @@ const PostForms = ({
   };
 
   return (
-    <SForm onSubmit={(e) => e.preventDefault()}>
+    <SForm
+      onSubmit={(e) => e.preventDefault()}
+      onBlur={() => console.log("blur")}
+    >
       <SBox>
         <SH1>반려동물과 관련된 다양한 정보를 공유해요!</SH1>
         <SPostSection>
@@ -83,12 +85,7 @@ const PostForms = ({
               errorMessage="한 글자 이상 입력해주세요."
             />
           </SEditorBox>
-          <PreviewImages
-            images={images}
-            setImages={setImages}
-            defaultId={defaultId}
-            setDefaultId={setDefaultId}
-          />
+          <PreviewImages images={images} setImages={setImages} />
         </SPostSection>
       </SBox>
       <SButton onClick={handleSubmit} isPending={isLoading}>

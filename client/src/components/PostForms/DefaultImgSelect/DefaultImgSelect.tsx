@@ -1,11 +1,12 @@
+import { Dispatch, SetStateAction } from "react";
+
 import InteractiveImage from "../../InteractiveImage/InteractiveImage";
 import { PostImagesProps } from "../PreviewImages/PreviewImages";
 import { SMImgList, SMImgUList, SModalSection } from "./style";
 
-type DefaultImgSelectProps = Omit<
-  PostImagesProps,
-  "setImages" | "editorRef"
-> & {
+type DefaultImgSelectProps = Pick<PostImagesProps, "images"> & {
+  defaultId: string;
+  setDefaultId: Dispatch<SetStateAction<string>>;
   closeModal: () => void;
 };
 
