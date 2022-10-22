@@ -1,6 +1,12 @@
 import styled, { css } from "styled-components";
 
-import { colors, mobile, tablet } from "../../../assets";
+import {
+  colors,
+  fontSizes,
+  formBorders,
+  mobile,
+  tablet,
+} from "../../../assets";
 import {
   ButtonOrange,
   Input,
@@ -17,12 +23,12 @@ export const SForm = styled.form`
 `;
 
 export const SH1 = styled.h1`
-  font-size: 42px;
+  ${fontSizes("subPageH1")}
   font-weight: normal;
   margin-bottom: 30px;
 
   ${mobile(css`
-    font-size: 35px;
+    ${fontSizes("subPageH2")}
   `)}
 `;
 
@@ -41,6 +47,8 @@ export const SaBox = styled.div`
   ${tablet(css`
     width: 85%;
   `)}
+
+  ${formBorders}
 `;
 
 export const SbBox = styled.div`
