@@ -4,6 +4,7 @@ export { default as calculateDistance } from "./calculateDistance";
 export * from "./compareImageList";
 export * from "./convertScoreToComment";
 export * from "./dateFormat";
+export { default as getTimeDifference } from "./getTimeDifference";
 export * from "./imageProcessor";
 export { default as isTokenExpired } from "./isTokenExpired";
 export { localStorageParser } from "./localStorageParser";
