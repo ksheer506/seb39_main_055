@@ -10,7 +10,7 @@ export const SForm = styled.form`
   flex-flow: column nowrap;
   align-items: center;
   justify-content: center;
-  margin: 55px 15px;
+  margin: 90px 15px;
 `;
 
 export const SBox = styled.div`
