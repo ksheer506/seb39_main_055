@@ -3,9 +3,8 @@ import styled, { css } from "styled-components";
 import { tablet } from "../../assets";
 
 export const Container = styled.div`
-  top: 135px;
   width: 100%;
-  position: relative;
+  padding-bottom: 135px;
 
   & > section {
     display: flex;

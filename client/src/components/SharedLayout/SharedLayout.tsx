@@ -17,9 +17,7 @@ const SContentBox = styled.div`
   flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
-
   left: 0;
-  padding-top: 135px; // === (nav 바 높이)
   overflow-x: hidden;
   overflow-y: scroll;
 
@@ -31,7 +29,7 @@ const SContentBox = styled.div`
 const SSection = styled.section<{ isOverWidth: boolean }>`
   width: 100%;
   height: max-content;
-  padding-bottom: 135px;
+  padding-top: 135px;
   /* min-height: calc(100vh - 300px); */
   max-width: ${({ isOverWidth }) => (isOverWidth ? "1600px" : "1200px")};
 `;

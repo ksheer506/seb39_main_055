@@ -4,7 +4,6 @@ import { mobile, tablet } from "../../../assets";
 
 export const SReviewSection = styled.section`
   width: 100%;
-  margin-bottom: 80px;
 `;
 
 export const SHeader = styled.header`
