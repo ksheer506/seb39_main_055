@@ -21,12 +21,13 @@ export const SBox = styled.div`
   ${mobile(css`
     width: 100vw;
     height: 800px;
+    margin: 0px 0px 100px 0px;
   `)}
 `;
 
 export const SH1 = styled.h1`
   ${fontSizes("subPageH1")}
-  padding: 50px;
+  padding: 0px 0px 40px 0px;
 `;
 
 export const SLoginSection = styled.section`
