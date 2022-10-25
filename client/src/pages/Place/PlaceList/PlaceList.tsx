@@ -29,7 +29,6 @@ const PlaceList = () => {
         category={
           <Category menuList={placeListCategories} selectedQKey="category" />
         }
-        showSearchBar={false}
       />
       <PlaceCardList category={category} />
     </SBox>

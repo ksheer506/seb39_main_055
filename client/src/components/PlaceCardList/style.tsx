@@ -16,7 +16,7 @@ export const SButtonBox = styled.div`
   flex-flow: row nowrap;
   column-gap: 10px;
   margin-left: auto;
-  margin-bottom: 80px;
+  margin-bottom: 25px;
 `;
 
 const defaultButton = css`
