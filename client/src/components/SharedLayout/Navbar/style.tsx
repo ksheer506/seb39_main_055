@@ -1,7 +1,13 @@
 import { Link } from "react-router-dom";
 import styled, { css } from "styled-components";
 
-import { bottomHoverLine, breakPoints, colors, mobile } from "../../../assets";
+import {
+  bottomHoverLine,
+  breakPoints,
+  colors,
+  mobile,
+  tablet,
+} from "../../../assets";
 import SearchBar from "../../SearchBar/SearchBar";
 
 export const Nav = styled.nav`
@@ -39,7 +45,7 @@ export const LogoLink = styled(Link)`
   }
 `;
 
-export const Search = styled(SearchBar)`
+const DefaultSearchBar = css`
   margin: 0px 55px;
   height: 38px;
   margin-top: 0px;
@@ -55,13 +61,25 @@ export const Search = styled(SearchBar)`
     background-color: rgba(0, 0, 0, 0);
     cursor: pointer;
   }
+`;
+
+export const Search = styled(SearchBar).attrs(({ breakPoint }) => ({
+  breakPoint,
+}))`
+  ${DefaultSearchBar}
 
   ${breakPoints(
     1000,
     css`
-      margin: 0px 25px;
+      margin: 0px 15px;
     `
   )}
+
+  ${mobile(css`
+    & > img {
+      display: none;
+    }
+  `)}
 `;
 
 export const Menu = styled.div`
@@ -94,7 +112,7 @@ export const Menu = styled.div`
     border-radius: 100%;
     background-color: ${colors("black050")};
 
-    ${mobile(css`
+    ${tablet(css`
       display: none;
     `)}
   }
@@ -125,15 +143,11 @@ export const MenuLink = styled(Link)`
     }
   }
 
-  @media screen and (max-width: ${({ theme }) => theme.breakPoints.tablet}) {
-    &:nth-child(1) {
+  ${tablet(css`
+    &:nth-child(-n + 2) {
       display: none;
     }
-
-    &:nth-child(2) {
-      display: none;
-    }
-  }
+  `)}
 `;
 
 export const UserBox = styled.div`
