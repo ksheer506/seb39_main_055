@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 import styled, { css } from "styled-components";
 
 import { colors, fontSizes, mobile } from "../../../assets";
-import Category from "../../Category/Category";
 
 const Nav = styled.nav`
   display: none;
@@ -35,6 +34,12 @@ const MenuUList = styled.ul`
 
 const MenuList = styled.li`
   width: 80px;
+`;
+
+const SearchButton = styled.button`
+  width: 100%;
+  background-color: white;
+  border: 0;
 `;
 
 const SLink = styled(Link)`
@@ -73,15 +78,19 @@ const MenuTitle = styled.h2`
   ${fontSizes("mobileH3")}
 `;
 
-const navMenus = [{ icon: "icon", title: "df", onClick: "gjf" }];
+interface MobileNavbarProps {
+  toggleSearchBar: () => void;
+}
 
-const MobileNavbar = () => {
+const MobileNavbar = ({ toggleSearchBar }: MobileNavbarProps) => {
   return (
     <Nav>
       <MenuUList>
         <MenuList>
-          <SearchSVG />
-          <MenuTitle>검색</MenuTitle>
+          <SearchButton type="button" onClick={() => toggleSearchBar()}>
+            <SearchSVG />
+            <MenuTitle>검색</MenuTitle>
+          </SearchButton>
         </MenuList>
         <MenuList>
           <SLink to="/post/list">
