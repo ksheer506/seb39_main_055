@@ -3,30 +3,20 @@ import { memo, ReactNode } from "react";
 
 import { useGeolocation } from "../../../hooks";
 import { INITIAL_LOCATION } from "../../../redux";
-import {
-  SaBox,
-  SaP,
-  SbP,
-  SHeader,
-  SLocSVG,
-  SSearchBar,
-  SWarningBox,
-} from "./style";
+import { SaBox, SaP, SbP, SHeader, SLocSVG, SWarningBox } from "./style";
 
 interface PlaceListHeaderProps {
   title: ReactNode;
   category: ReactNode;
   filter?: ReactNode;
-  showSearchBar?: boolean;
 }
 
 const PlaceListHeader = memo(
-  ({ title, category, filter, showSearchBar = true }: PlaceListHeaderProps) => {
+  ({ title, category, filter }: PlaceListHeaderProps) => {
     const [locPermission] = useGeolocation();
 
     return (
       <SHeader>
-        {showSearchBar && <SSearchBar />}
         {title}
         <SWarningBox showWarning={!locPermission}>
           <SaBox>

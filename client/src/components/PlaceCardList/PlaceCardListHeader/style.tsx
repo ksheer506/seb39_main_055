@@ -1,8 +1,6 @@
 import { IoLocationOutline } from "react-icons/io5";
 import styled, { css } from "styled-components";
 
-import SearchBar from "../../SearchBar/SearchBar";
-
 const WARNING_BREAKPOINT = "580px";
 
 export const SHeader = styled.header`
@@ -10,16 +8,12 @@ export const SHeader = styled.header`
   flex-flow: column nowrap;
   align-items: center;
   margin-bottom: 40px;
-  padding-top: 300px;
+  /* padding-top: 300px; */
+  height: max-content;
 
-  @media screen and (max-width: 1650px) {
+  /* @media screen and (max-width: 1650px) {
     padding-top: 0;
-  }
-`;
-
-export const SSearchBar = styled(SearchBar)`
-  margin-top: 65px;
-  max-width: 800px;
+  } */
 `;
 
 export const SWarningBox = styled.div<{ showWarning: boolean }>`
