@@ -2,7 +2,7 @@
 import { Navigate, useSearchParams } from "react-router-dom";
 import { toast } from "react-toastify";
 
-import { Category, PlaceCardList, PlaceCardListHeader } from "../../components";
+import { Category, PlaceList, PlaceListHeader } from "../../components";
 import { mappedCategories, searchCategories } from "../../constants";
 import { axiosInstance } from "../../utils";
 import { SBox, SH1 } from "./style";
@@ -53,7 +53,7 @@ const Search = () => {
 
   return (
     <SBox>
-      <PlaceCardListHeader
+      <PlaceListHeader
         title={<SH1>{`‘${keyword}’에 대한 검색 결과입니다.`}</SH1>}
         category={
           <Category
@@ -63,7 +63,7 @@ const Search = () => {
           />
         }
       />
-      <PlaceCardList keyword={keyword} category={category} />
+      <PlaceList keyword={keyword} category={category} />
     </SBox>
   );
 };

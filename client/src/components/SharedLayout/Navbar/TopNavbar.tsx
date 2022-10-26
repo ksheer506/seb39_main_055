@@ -44,8 +44,8 @@ const WhenLoggedIn = memo(function WhenLoggedIn() {
     <S.UserBox>
       <img src={image || profile} alt="profile" />
       <Hamburger
+        isClicked={tabIsOpen}
         onClick={handleTabClick}
-        isOpen={tabIsOpen}
         menu={
           <S.Tab isOpen={tabIsOpen} onClick={handleTabClick} ref={tabRef}>
             <UserTab />
