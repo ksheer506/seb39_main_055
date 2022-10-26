@@ -4,8 +4,8 @@ import { useSearchParams } from "react-router-dom";
 
 import {
   Category,
-  PlaceCardList,
-  PlaceCardListHeader,
+  PlaceList as PlaceCardList,
+  PlaceListHeader,
 } from "../../../components";
 import { placeListCategories } from "../../../constants";
 import { SBox, SH1 } from "./style";
@@ -24,7 +24,7 @@ const PlaceList = () => {
 
   return (
     <SBox>
-      <PlaceCardListHeader
+      <PlaceListHeader
         title={<SH1>펫 플레이스</SH1>}
         category={
           <Category menuList={placeListCategories} selectedQKey="category" />

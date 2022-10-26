@@ -67,9 +67,12 @@ const PlaceCard = memo(
         let imageBlob: Blob;
 
         try {
-          const { data } = await axios.get<Blob>(image, {
-            responseType: "blob",
-          });
+          const { data } = await axios.get<Blob>(
+            "https://images.pexels.com/photos/2014422/pexels-photo-2014422.jpeg" /* image */,
+            {
+              responseType: "blob",
+            }
+          );
 
           imageBlob = data;
         } catch (err) {

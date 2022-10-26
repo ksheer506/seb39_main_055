@@ -174,7 +174,7 @@ const PlaceList = ({ keyword, category }: ResultListProps) => {
     const sort = e.target.textContent;
 
     if (isKeyOf(sort, sortOptions)) {
-      setSort(sortOptions[sort] as "distance" | "createdAt");
+      setSort(sortOptions[sort]);
     }
     toggleFilterList();
   };
