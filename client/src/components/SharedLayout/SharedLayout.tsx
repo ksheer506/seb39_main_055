@@ -15,7 +15,6 @@ const SMain = styled.main`
 const SContentBox = styled.div`
   position: relative;
   overflow-x: hidden;
-  overflow-y: scroll;
 
   ${mobile(css`
     height: calc(100vh - 70px);
@@ -39,9 +38,7 @@ const SABox = styled.div`
 
 const SSection = styled.section<{ isOverWidth: boolean }>`
   width: 100%;
-
   padding-top: 135px;
-  /* min-height: calc(100vh - 300px); */
   max-width: ${({ isOverWidth }) => (isOverWidth ? "1600px" : "1200px")};
 `;
 
