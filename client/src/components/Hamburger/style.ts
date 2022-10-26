@@ -1,34 +1,55 @@
 import styled, { css } from "styled-components";
 
 import { colors } from "../../assets";
+import { HamburgerProps } from "./Hamburger";
 
-export const HamburgerBox = styled.div`
+type BoxProps = Pick<HamburgerProps, "size">;
+type ButtonProps = Pick<HamburgerProps, "isClicked" | "thickness">;
+type PattyProps = Pick<HamburgerProps, "thickness">;
+
+export const HamburgerBox = styled.div<BoxProps>`
   display: flex;
   justify-content: center;
   align-items: center;
   margin-top: 0px;
   width: 30px;
-  height: 100%;
+  height: 30px;
   cursor: pointer;
+
+  ${({ size }) =>
+    size &&
+    css`
+      width: ${size}px;
+      height: ${size}px;
+    `}
 `;
 
-export const PattyButton = styled.button<{ clicked: boolean }>`
+export const PattyButton = styled.button<ButtonProps>`
   position: relative;
-  width: 25px;
-  height: 18px;
-  flex-flow: row wrap;
+  display: flex;
+  width: 60%;
+  height: 60%;
+  flex-flow: column nowrap;
   justify-content: center;
-  align-items: center;
+  row-gap: 3px;
   border: 0px;
   padding: 0px;
   margin: 0px;
   background-color: rgba(0, 0, 0, 0);
 
-  ${({ clicked }) =>
-    clicked &&
+  ${({ thickness }) =>
+    thickness &&
+    css`
+      /* Patty 두께에 비례해 자연스러운 값을 지정 */
+      row-gap: ${Math.ceil(thickness * 1.1)}px;
+      width: ${Math.ceil(thickness * 7.9)}px;
+    `}
+
+  ${({ isClicked }) =>
+    isClicked &&
     css`
       & > span:nth-child(1) {
-        transform: translate(-50%, 0%) rotate(45deg);
+        transform: translate(20%, -50%) rotate(45deg);
       }
 
       & > span:nth-child(2) {
@@ -36,28 +57,21 @@ export const PattyButton = styled.button<{ clicked: boolean }>`
       }
 
       & > span:nth-child(3) {
-        transform: translate(-50%, 80%) rotate(-45deg);
+        transform: translate(20%, 50%) rotate(-45deg);
       }
     `}
 `;
 
-export const Patty = styled.span`
+export const Patty = styled.span<PattyProps>`
   display: block;
   position: relative;
-  width: 70%;
-  height: 2px;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  width: 100%;
+  height: ${({ thickness }) => (thickness ? `${thickness}px` : "2px")};
   background-color: ${colors("black500")};
-  transition: 0.4s all;
+  transition: 350ms all ease-in;
 
   &:nth-child(1) {
     transform-origin: 0 0;
-  }
-
-  &:nth-child(2) {
-    margin-top: 3px;
-    margin-bottom: 3px;
   }
 
   &:nth-child(3) {

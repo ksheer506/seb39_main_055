@@ -2,20 +2,28 @@ import { ReactNode } from "react";
 
 import { HamburgerBox, Patty, PattyButton } from "./style";
 
-interface HamburgerProps {
+export interface HamburgerProps {
+  size?: number;
+  thickness?: number;
+  isClicked: boolean;
   onClick: () => void;
-  isOpen: boolean;
   menu: ReactNode;
 }
 
-const Hamburger = ({ onClick, isOpen, menu }: HamburgerProps) => {
+const Hamburger = ({
+  size,
+  thickness,
+  isClicked,
+  onClick,
+  menu,
+}: HamburgerProps) => {
   return (
     <>
-      <HamburgerBox onClick={onClick}>
-        <PattyButton clicked={isOpen}>
-          <Patty />
-          <Patty />
-          <Patty />
+      <HamburgerBox size={size} onClick={onClick}>
+        <PattyButton thickness={thickness} isClicked={isClicked}>
+          {[0, 1, 2].map((e) => (
+            <Patty thickness={thickness} key={e} />
+          ))}
         </PattyButton>
       </HamburgerBox>
 
