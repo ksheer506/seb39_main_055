@@ -55,6 +55,7 @@ export const SSection = styled.section`
 
   ${mobile(
     css`
+      padding-top: 10px;
       padding-left: 10px;
       font-size: 22px;
       height: calc(100% - 270px);
@@ -64,24 +65,39 @@ export const SSection = styled.section`
 `;
 
 export const SH1 = styled.h1`
+  flex: 0 0 auto;
+  vertical-align: middle;
+  width: 100%;
+  height: 36px;
+  line-height: 37px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
   font-size: 1em;
 `;
 
 export const SH2 = styled.h2`
+  flex: 0 0 auto;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  height: 23px;
+  line-height: 28px;
   font-size: 0.7em;
   font-weight: lighter;
-  line-height: 3.2rem;
+  margin: 10px 0px 24px 0px;
   color: ${colors("black250")};
 
   ${tablet(
     css`
-      line-height: 3rem;
+      margin: 5px 0px 21px 0px;
     `
   )}
 
   ${mobile(
     css`
-      line-height: 2.5rem;
+      margin: 5px 0px 18px 0px;
     `
   )}
 `;
@@ -92,12 +108,12 @@ export const SMoreInfoBox = styled.div`
   font-size: 0.45em;
   font-weight: lighter;
   color: #555555;
-  margin-top: 10px;
+  /* margin-top: 10px; */
 
   ${mobile(
     css`
       font-size: 0.65em;
-      margin-top: 10px;
+      /* margin-top: 10px; */
     `
   )}
 `;
