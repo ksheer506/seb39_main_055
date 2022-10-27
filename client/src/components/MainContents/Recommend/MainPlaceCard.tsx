@@ -2,7 +2,7 @@ import { AiOutlineLine } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import styled, { css } from "styled-components";
 
-import { colors, mobile } from "../../../assets";
+import { colors, fontSizes, mobile, tablet } from "../../../assets";
 
 interface RecommendProps {
   id: number;
@@ -18,13 +18,17 @@ interface RecommendProps {
 }
 
 const SCardList = styled.li`
-  flex: 0 1 280px;
+  flex: 1 1 280px;
   transition: 0.4s ease-out;
 
   &:hover {
     opacity: 0.7;
     transition: 0.4s ease-out;
   }
+
+  ${tablet(css`
+    min-width: 280px;
+  `)}
 `;
 
 const SImageBox = styled.div<{ isEven: boolean }>`
@@ -36,14 +40,13 @@ const Image = styled.img`
   height: 100%;
   object-fit: cover;
 
-  ${mobile(css`
-    width: 400px;
+  ${tablet(css`
     flex-wrap: wrap;
   `)}
 `;
 
 const Category = styled.div`
-  margin: 15px 0px;
+  margin: 12px 0px 10px 0px;
   color: ${({ theme }) => theme.colors.orange500};
   font-size: 14px;
 `;
@@ -61,17 +64,18 @@ const TextTitle = styled.div`
 
 const TextLine = styled.div`
   color: ${colors("black250")};
-  font-size: 16px;
+
+  ${fontSizes("mainH5")}
 
   ${mobile(css`
-    width: 300px;
+    width: 280px;
     flex-wrap: wrap;
   `)}
 `;
 
 const Date = styled.div`
   color: ${({ theme }) => theme.colors.black100};
-  margin: 10px 0px 0px 0px;
+  margin: 8px 0px 0px 0px;
   font-size: 12px;
 `;
 
@@ -97,7 +101,7 @@ const MainPlaceCard = ({
           <div>
             <Category>{category}</Category>
             <TextTitle>{textTitle}</TextTitle>
-            <AiOutlineLine size={25} />
+            <AiOutlineLine size={20} />
             <STextBox>
               <TextLine>{textLine}</TextLine>
               <Date>{date}</Date>
