@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import styled, { css } from "styled-components";
 
-import { breakPoints, colors, fontSizes } from "../../assets";
+import { breakPoints, colors, fontSizes, mobile } from "../../assets";
 import { cat2, cat3, dog1, dog2 } from "../../assets/images/animal";
 
 export const SLink = styled(Link)`
@@ -13,6 +13,10 @@ export const SLink = styled(Link)`
   height: max-content;
   padding: 30px;
   background-color: #fff9e6;
+
+  ${mobile(css`
+    padding: 20px;
+  `)}
 `;
 
 export const STitle = styled.section`
@@ -21,7 +25,7 @@ export const STitle = styled.section`
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  width: 270px;
+  width: 100%;
   text-align: center;
 
   & > h2 {
@@ -42,7 +46,7 @@ export const SImgContainer = styled.section`
   justify-content: space-between;
   align-items: center;
   height: 120px;
-  min-width: 320px;
+  min-width: 260px;
   gap: 20px;
 `;
 
