@@ -18,7 +18,7 @@ interface RecommendProps {
 }
 
 const SCardList = styled.li`
-  flex: 1 1 280px;
+  flex: 0 1 280px;
   transition: 0.4s ease-out;
 
   &:hover {
