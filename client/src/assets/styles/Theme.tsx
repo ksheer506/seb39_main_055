@@ -3,7 +3,7 @@ import { css, FlattenSimpleInterpolation } from "styled-components";
 export const theme = {
   breakPoints: {
     mobile: "480px",
-    tablet: "760px",
+    tablet: "770px",
     desktop: "1280px",
   },
   colors: {
@@ -11,7 +11,7 @@ export const theme = {
     black025: "#eeeeee",
     black050: "#D6D6D6",
     black100: "#c0c0c0",
-    black200: "#a5a5a5",
+    black200: "#9e9e9e",
     black250: "#797979",
     black300: "#707070",
     black400: "#434343",
@@ -25,7 +25,7 @@ export const theme = {
   fontSizes: {
     mainH1: "35px",
     mainH2: "30px",
-    mainH3: "25px",
+    mainH3: "27px",
     mainH4: "20px",
     mainH5: "15px",
     mobileH1: "18px",
