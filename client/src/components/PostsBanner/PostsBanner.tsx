@@ -37,7 +37,7 @@ export const STitle = styled.section`
 
   & > p {
     line-height: 20px;
-    color: ${colors("black250")};
+    color: ${colors("black200")};
   }
 `;
 
@@ -55,10 +55,6 @@ const SImage = styled.img`
   height: 100%;
   border-radius: 5px;
   object-fit: cover;
-
-  &:last-child {
-    display: none;
-  }
 
   ${breakPoints(
     1108,
