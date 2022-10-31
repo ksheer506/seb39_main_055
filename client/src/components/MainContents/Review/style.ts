@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
 
-import { mobile, tablet } from "../../../assets";
+import { fontSizes, mobile, tablet } from "../../../assets";
 
 export const SReviewSection = styled.section`
   width: 100%;
@@ -15,9 +15,9 @@ export const SHeader = styled.header`
 `;
 
 export const SH1 = styled.h1`
-  font-size: 43px;
   font-weight: normal;
-  margin-bottom: 10px;
+
+  ${fontSizes("mainH1")}
 
   ${tablet(css`
     font-size: 30px;
@@ -26,8 +26,8 @@ export const SH1 = styled.h1`
 
 export const SH2 = styled.h2`
   font-size: 30px;
-  font-weight: lighter;
   line-height: 2rem;
+  ${fontSizes("mainH4")}
   color: ${({ theme }) => theme.colors.black250};
 
   ${tablet(css`
