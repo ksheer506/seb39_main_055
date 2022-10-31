@@ -14,7 +14,7 @@ interface RecommendProps {
   textTitle: string;
   textLine: string;
   link: string;
-  isEven: boolean;
+  stretched: boolean;
 }
 
 const SCardList = styled.li`
@@ -31,8 +31,8 @@ const SCardList = styled.li`
   `)}
 `;
 
-const SImageBox = styled.div<{ isEven: boolean }>`
-  height: ${({ isEven }) => (isEven ? "340px" : "445px")};
+const SImageBox = styled.div<{ stretched: boolean }>`
+  height: ${({ stretched }) => (stretched ? "340px" : "445px")};
 `;
 
 const Image = styled.img`
@@ -89,13 +89,13 @@ const MainPlaceCard = ({
   textTitle,
   textLine,
   link,
-  isEven,
+  stretched,
 }: RecommendProps) => {
   return (
     <SCardList>
       <Link to={`/place/${id}`}>
         <section>
-          <SImageBox isEven={isEven}>
+          <SImageBox stretched={stretched}>
             <Image src={image} alt={alt} />
           </SImageBox>
           <div>
