@@ -1,5 +1,4 @@
-import { AiFillHeart, AiFillStar, AiOutlineHeart } from "react-icons/ai";
-import { Link } from "react-router-dom";
+import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import styled, { css } from "styled-components";
 
 import { colors } from "../../assets";
@@ -16,18 +15,6 @@ export const SList = styled.li`
   &:hover {
     opacity: 0.7;
   }
-`;
-
-export const SaLink = styled(Link)`
-  flex: 1 1 240px;
-  width: 100%;
-  overflow: hidden;
-`;
-
-export const SImg = styled.img`
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
 `;
 
 const heartDefault = css`
@@ -59,36 +46,6 @@ export const SHeader = styled.header`
   row-gap: 10px;
 `;
 
-export const STopBox = styled.div`
-  display: flex;
-  flex-flow: row nowrap;
-  column-gap: 15px;
-`;
-
-export const SH2 = styled.h2`
-  display: flex;
-  align-items: center;
-  color: ${colors("orange500")};
-  font-size: 15px;
-  font-weight: bold;
-  height: 16px;
-`;
-
-export const SP = styled.p`
-  display: flex;
-  align-items: center;
-  margin-top: 4px;
-  color: ${colors("black250")};
-  font-size: 12px;
-`;
-
-export const SH1 = styled.h1`
-  font-size: 22px;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
-`;
-
 export const SBar = styled.span`
   display: block;
   height: 3px;
@@ -100,18 +57,4 @@ export const SFooter = styled.footer`
   display: flex;
   flex-flow: row nowrap;
   margin-top: 5px;
-`;
-
-export const SStarSVG = styled(AiFillStar)`
-  width: 16px;
-  fill: ${colors("orange500")};
-`;
-
-export const SRatingP = styled.p`
-  display: flex;
-  align-items: center;
-  padding-top: 2px;
-  margin-left: 3px;
-  font-size: 14px;
-  color: ${colors("black250")};
 `;

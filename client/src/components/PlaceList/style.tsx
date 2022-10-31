@@ -1,3 +1,4 @@
+import { AiFillStar } from "react-icons/ai";
 import styled, { css } from "styled-components";
 
 import { colors } from "../../assets";
@@ -120,4 +121,49 @@ export const NoSearchResult = styled(NoResult)`
     font-size: 22px;
     color: ${colors("black250")};
   }
+`;
+
+/* PlaceCard Slots */
+export const STopBox = styled.div`
+  display: flex;
+  flex-flow: row nowrap;
+  column-gap: 15px;
+`;
+
+export const SH2 = styled.h2`
+  display: flex;
+  align-items: center;
+  color: ${colors("orange500")};
+  font-size: 15px;
+  font-weight: bold;
+  height: 16px;
+`;
+
+export const SP = styled.p`
+  display: flex;
+  align-items: center;
+  margin-top: 4px;
+  color: ${colors("black250")};
+  font-size: 12px;
+`;
+
+export const SH1 = styled.h1`
+  font-size: 22px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+`;
+
+export const SStarSVG = styled(AiFillStar)`
+  width: 16px;
+  fill: ${colors("orange500")};
+`;
+
+export const SRatingP = styled.p`
+  display: flex;
+  align-items: center;
+  padding-top: 2px;
+  margin-left: 3px;
+  font-size: 14px;
+  color: ${colors("black250")};
 `;

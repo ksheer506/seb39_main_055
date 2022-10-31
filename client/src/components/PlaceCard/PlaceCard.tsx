@@ -1,37 +1,25 @@
 /* eslint-disable consistent-return */
 /* eslint-disable react/display-name */
 import axios from "axios";
-import { memo } from "react";
+import { memo, ReactNode, useRef } from "react";
 import { useQuery } from "react-query";
-import { Link } from "react-router-dom";
 
 import { queryClient } from "../../utils";
-import { Rectangle } from "../Skeleton/Skeleton";
+import CardImage from "./CardImage";
 import {
   EmptyHeartSVG,
   FillHeartSVG,
-  SaLink,
   SBar,
   SFooter,
-  SH1,
-  SH2,
   SHeader,
-  SImg,
   SList,
-  SP,
-  SRatingP,
-  SStarSVG,
-  STopBox,
 } from "./style";
 
 export interface PlaceCardProps {
+  header: ReactNode;
+  footer: ReactNode;
   image: string;
   alt: string;
-  location: string;
-  distance: number;
-  storeName: string;
-  averageRating: number;
-  reviews: number;
   storeId: string;
   isLiked: boolean;
 }
@@ -49,17 +37,7 @@ async function invalidateImageCache(image: string, storeId: string) {
 }
 
 const PlaceCard = memo(
-  ({
-    image,
-    alt,
-    location,
-    distance,
-    storeName,
-    averageRating,
-    reviews,
-    storeId,
-    isLiked,
-  }: PlaceCardProps) => {
+  ({ header, footer, image, alt, storeId, isLiked }: PlaceCardProps) => {
     const storeLink = `/place/${storeId}`;
     const { data: src } = useQuery(
       ["place", "mainPicture", storeId],
@@ -93,32 +71,15 @@ const PlaceCard = memo(
 
     return (
       <SList>
-        <SaLink to={storeLink}>
-          {src ? (
-            <SImg src={src} alt={alt} crossOrigin="anonymous" />
-          ) : (
-            <Rectangle width="100%" height="235px" />
-          )}
-        </SaLink>
+        <CardImage link={storeLink} src={src} alt={alt} />
         {isLiked ? <FillHeartSVG /> : <EmptyHeartSVG />}
 
         <SHeader>
-          <STopBox>
-            <SH2>{location}</SH2>
-            <SP>{distance}km</SP>
-          </STopBox>
-          <Link to={storeLink}>
-            <SH1>{storeName}</SH1>
-          </Link>
+          {header}
           <SBar />
         </SHeader>
 
-        <SFooter>
-          <SStarSVG />
-          <SRatingP>
-            {averageRating} ({reviews})
-          </SRatingP>
-        </SFooter>
+        <SFooter>{footer}</SFooter>
       </SList>
     );
   }

@@ -4,7 +4,7 @@
 import { MouseEvent, MutableRefObject, Suspense, useState } from "react";
 import { ErrorBoundary } from "react-error-boundary";
 import { BsSortDown } from "react-icons/bs";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import useListPlaces, {
   sortOptions,
@@ -24,8 +24,14 @@ import {
   SButton,
   SButtonBox,
   SFilterUList,
+  SH1,
+  SH2,
   SList,
+  SP,
+  SRatingP,
   SSection,
+  SStarSVG,
+  STopBox,
   SUList,
 } from "./style";
 
@@ -70,6 +76,7 @@ const renderPlaceCards = (
     let { addressName } = e;
     if (!userLat || !userLon) return;
 
+    const storeLink = `/place/${storeId}`;
     const heartUserList = new Set(heartUserId);
     const isLiked = heartUserList.has(userId);
     const avgRating = Number(averageStar(reviews));
@@ -89,29 +96,44 @@ const renderPlaceCards = (
       addressName = province;
     }
 
+    const CardHeader = () => (
+      <>
+        <STopBox>
+          <SH2>{addressName}</SH2>
+          <SP>{distance}km</SP>
+        </STopBox>
+        <Link to={storeLink}>
+          <SH1>{storeName}</SH1>
+        </Link>
+      </>
+    );
+
+    const CardFooter = () => (
+      <>
+        <SStarSVG />
+        <SRatingP>
+          {avgRating} ({reviews.length})
+        </SRatingP>
+      </>
+    );
+
     return (
       <Suspense fallback={<PlaceSkeleton />} key={storeId}>
         <ErrorBoundary
           fallback={
             <PlaceCardError
-              location={addressName}
-              storeName={storeName}
-              averageRating={avgRating}
-              reviews={reviews.length}
-              distance={distance}
+              header={<CardHeader />}
+              footer={<CardFooter />}
               storeId={storeId}
               isLiked={isLiked}
             />
           }
         >
           <PlaceCard
+            header={<CardHeader />}
+            footer={<CardFooter />}
             image={storeImages[0]?.storeImage}
             alt={`${storeName}의 대표 이미지`}
-            location={addressName}
-            storeName={storeName}
-            averageRating={avgRating}
-            reviews={reviews.length}
-            distance={distance}
             storeId={storeId}
             isLiked={isLiked}
           />
