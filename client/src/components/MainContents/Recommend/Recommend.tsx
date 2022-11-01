@@ -49,24 +49,13 @@ const Recommend = () => {
     if (!e.currentTarget.value) return; // 'EventTarget' 형식에 'target' 속성이 없습니다.
     const { target, currentTarget } = e;
 
-    console.log(e.target);
+    console.log(e.target); //
     // console.log("click", e.target.value);
   };
 
   return (
     <Container>
       <Header />
-      <button
-        onChange={handleChange}
-        onClick={handleClick}
-        type="button"
-        value="111000"
-      >
-        <div>
-          <input type="text" />
-          1111111
-        </div>
-      </button>
       <SPictureBox>
         <SUList>
           {scrollDummyImg.map((recommend, index) => (

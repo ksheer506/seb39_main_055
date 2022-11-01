@@ -20,8 +20,7 @@ export const SArticle = styled.article`
   color: ${({ theme }) => theme.colors.black250};
   font-size: 14px;
   line-height: 1.3rem;
-  box-shadow: 0px 0px 5px grey;
-  border-radius: 3px;
+  box-shadow: 0px 0px 2px 0px #b6b6b6;
   overflow: hidden;
 
   ${mobile(css`
@@ -67,6 +66,7 @@ export const SP = styled.p`
 
 export const SH3 = styled.h3`
   font-size: 16px;
+  font-weight: bold;
   color: ${({ theme }) => theme.colors.black300};
 `;
 

@@ -82,22 +82,22 @@ export const SH2 = styled.h2`
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  height: 23px;
-  line-height: 28px;
+  height: 25px;
+  line-height: 27px;
   font-size: 0.7em;
   font-weight: lighter;
-  margin: 10px 0px 24px 0px;
+  margin: 10px 0px;
   color: ${colors("black250")};
 
   ${tablet(
     css`
-      margin: 5px 0px 21px 0px;
+      margin: 5px 0px;
     `
   )}
 
   ${mobile(
     css`
-      margin: 5px 0px 18px 0px;
+      margin: 3px 0px 10px 0px;
     `
   )}
 `;
@@ -105,23 +105,21 @@ export const SH2 = styled.h2`
 export const SMoreInfoBox = styled.div`
   display: flex;
   align-items: center;
-  font-size: 0.45em;
   font-weight: lighter;
   color: #555555;
-  /* margin-top: 10px; */
-
-  ${mobile(
-    css`
-      font-size: 0.65em;
-      /* margin-top: 10px; */
-    `
-  )}
 `;
 
 export const SP = styled.p`
   display: inline-block;
   width: max-content;
   margin-right: 10px;
+  font-size: 0.45em;
+
+  ${mobile(
+    css`
+      font-size: 0.6em;
+    `
+  )}
 `;
 
 export const SArrow = styled.span`

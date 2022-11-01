@@ -11,27 +11,29 @@ export const SHeader = styled.header`
   flex-flow: column wrap;
   row-gap: 10px;
   align-items: center;
-  margin: 20px 0px 30px 0px;
+  margin: 0px 0px 15px 0px;
 `;
 
 export const SH1 = styled.h1`
   font-weight: normal;
-
   ${fontSizes("mainH1")}
 
   ${tablet(css`
-    font-size: 30px;
+    ${fontSizes("mainH2")}
+  `)}
+  ${mobile(css`
+    ${fontSizes("mainH3")}
   `)}
 `;
 
 export const SH2 = styled.h2`
   font-size: 30px;
   line-height: 2rem;
-  ${fontSizes("mainH4")}
   color: ${({ theme }) => theme.colors.black250};
+  ${fontSizes("mainH4")}
 
-  ${tablet(css`
-    font-size: 25px;
+  ${mobile(css`
+    ${fontSizes("mainH5")}
   `)}
 `;
 
@@ -43,13 +45,13 @@ export const SCardSection = styled.section`
 
 export const SCardBox = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(420px, 0.65fr));
-  gap: 15px;
+  grid-template-columns: repeat(auto-fill, minmax(430px, 0.65fr));
+  gap: 20px;
   justify-content: center;
   align-items: center;
 
   ${mobile(css`
-    grid-template-columns: repeat(auto-fill, minmax(310px, 0.8fr));
+    grid-template-columns: repeat(auto-fill, minmax(320px, 0.8fr));
     gap: 20px;
   `)}
 `;

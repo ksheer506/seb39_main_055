@@ -23,13 +23,12 @@ export const Container = styled.div`
     flex-direction: column;
     justify-content: center;
     gap: 10px;
-    padding: 0px 10px 25px 10px;
+    padding: 0px 20px 25px 20px;
     height: min-content;
 
     & > p {
       color: ${colors("black300")};
       line-height: 23px;
-
       ${fontSizes("mainH4")}
 
       ${mobile(css`
@@ -52,9 +51,11 @@ export const STitleBox = styled.div`
   & > h3 {
     flex: 0 0 auto;
     color: ${colors("black500")};
-
     ${fontSizes("mainH1")};
 
+    ${tablet(css`
+      ${fontSizes("mainH2")};
+    `)}
     ${mobile(css`
       ${fontSizes("mainH3")};
     `)}
