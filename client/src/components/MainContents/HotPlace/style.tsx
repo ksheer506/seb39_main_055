@@ -1,47 +1,81 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
-import { colors, fontSizes } from "../../../assets";
+import { colors, fontSizes, mobile, tablet } from "../../../assets";
 import LoadingSpinner from "../../LoadingSpinner/LoadingSpinner";
+
+function colorizeRanking(colors: string[]) {
+  let style = "";
+
+  for (let i = 0; i < colors.length; i += 1) {
+    style += `
+      li:nth-child(${i + 1}) {
+        color: ${colors[i]};
+      }
+    `;
+  }
+
+  return style;
+}
 
 export const Container = styled.div`
   & > header {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: 20px;
-    padding: 25px 10px;
-    height: 174px;
-
-    & > h3 {
-      color: ${colors("black500")};
-      ${fontSizes("mainH1")};
-    }
+    gap: 10px;
+    padding: 0px 10px 25px 10px;
+    height: min-content;
 
     & > p {
-      color: #707070;
+      color: ${colors("black300")};
+      line-height: 23px;
+
       ${fontSizes("mainH4")}
+
+      ${mobile(css`
+        ${fontSizes("mainH5")};
+      `)};
     }
 
-    @media screen and (max-width: ${({ theme }) => theme.breakPoints.mobile}) {
-      & > h3 {
-        font-size: 24px;
-      }
-
-      & > p {
-        font-size: 14px;
-      }
-    }
+    ${mobile(css`
+      padding: 0px 10px 15px 10px;
+    `)}
   }
+`;
+
+export const STitleBox = styled.div`
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  gap: 10px;
+
+  & > h3 {
+    flex: 0 0 auto;
+    color: ${colors("black500")};
+
+    ${fontSizes("mainH1")};
+
+    ${mobile(css`
+      ${fontSizes("mainH3")};
+    `)}
+  }
+  ${tablet(css`
+    & > button {
+      flex: 1 1 auto;
+      margin-left: auto;
+      max-width: 170px;
+    }
+  `)}
 `;
 
 export const SSection = styled.section`
   display: flex;
-  height: 500px;
+  justify-content: center;
+  height: max-content;
 
   @media screen and (max-width: 1000px) {
     display: flex;
     flex-direction: column;
-    height: 770px;
   }
 `;
 
@@ -57,15 +91,6 @@ export const SImgContainer = styled.div`
 
   @media screen and (max-width: 1000px) {
     height: 350px;
-  }
-`;
-
-export const SMainContainer = styled.main`
-  flex-basis: 50%;
-  padding: 20px 20px 0 20px;
-
-  @media screen and (max-width: 1200px) {
-    padding: 20px 0 0 0;
   }
 `;
 
@@ -99,19 +124,16 @@ export const SButtonContainer = styled.div`
 `;
 
 export const SListContainer = styled.ul`
+  display: flex;
+  flex-flow: column wrap;
+  gap: 15px;
+  flex: 0 1 80%;
   position: relative;
-  height: 440px;
-  margin-top: 20px;
-  padding: 5px;
-  overflow-y: scroll;
+  padding: 0px 10px 0px 0px;
+  height: min-content;
 
-  & > li:last-child {
-    margin-bottom: 0;
-  }
-
-  @media screen and (max-width: 1000px) {
-    height: 350px;
-  }
+  // PlaceCard 내부(RankBox)의 순위별 색상 지정
+  ${colorizeRanking(["#ffc70d", "#8d8d8d", "#c0923d", "#535353", "#535353"])}
 `;
 
 export const SLoading = styled(LoadingSpinner)`

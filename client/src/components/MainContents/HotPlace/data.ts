@@ -7,13 +7,13 @@ import {
   restaurant,
 } from "../../../assets/images/hotplace";
 
-export const DUMMY_CATEGORY_LIST = [
-  "숙소",
-  "미용",
-  "카페",
-  "맛집",
-  "운동장",
-  "동물병원",
+export const CATEGORY_LIST = [
+  { value: "숙소" },
+  { value: "미용" },
+  { value: "카페" },
+  { value: "맛집" },
+  { value: "운동장" },
+  { value: "동물병원" },
 ];
 
 export const DUMMY_BUTTON = [

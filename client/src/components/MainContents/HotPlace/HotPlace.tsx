@@ -1,77 +1,62 @@
-import React, { MouseEvent, useState } from "react";
+import { useCallback, useState } from "react";
 import { useQuery } from "react-query";
 
 import { getPlaceList } from "../../../apis";
-import { DUMMY_BUTTON, DUMMY_CATEGORY_LIST } from "./data";
+import { Select } from "../..";
+import { CATEGORY_LIST } from "./data";
 import PlaceCard from "./PlaceCard/PlaceCard";
 import {
   Container,
-  SButtonContainer,
-  SImgContainer,
   SListContainer,
   SLoading,
-  SMainContainer,
   SSection,
+  STitleBox,
 } from "./style";
 
 const HotPlace = () => {
-  const [buttonIndex, setButtonIndex] = useState(0);
+  const [selected, setSelected] = useState("숙소");
+  const { data, isLoading } = useQuery(["hotPlace", selected], () =>
+    getPlaceList(selected)
+  );
 
-  const handleBtnClick = ({ target }: MouseEvent<HTMLButtonElement>) => {
-    if (!(target instanceof HTMLButtonElement)) return;
-
-    setButtonIndex(Number(target.value));
-  };
-
-  /* const { data, isLoading } = useQuery(
-    ["hotPlace", DUMMY_CATEGORY_LIST[buttonIndex as number]],
-    () => getPlaceList(DUMMY_CATEGORY_LIST[buttonIndex as number])
-  ); */
+  const handleSelected = useCallback((value: string) => {
+    setSelected(value);
+  }, []);
 
   return (
     <Container>
       <header>
-        <h3>요즘 많이 찾는 핫 플레이스</h3>
-        <p>다른 사람들이 많이 찾는 장소는?</p>
+        <STitleBox>
+          <h3>요즘 많이 찾는 핫 플레이스: </h3>
+          <Select
+            options={CATEGORY_LIST}
+            placeholder="카테고리 선택"
+            onSelected={handleSelected}
+            defaultValue="숙소"
+          />
+        </STitleBox>
+        <p>다른 이용자들이 최근에 어느 장소에 머물렀는지 확인해보세요.</p>
       </header>
       <SSection>
-        <SImgContainer>
-          {/* {data && data[0] && (
-            <img src={data[0].storeImages[0].storeImage} alt="hotel" />
-          )} */}
-        </SImgContainer>
-        <SMainContainer>
-          <SButtonContainer>
-            {DUMMY_BUTTON.map((el, idx) => (
-              <React.Fragment key={el.id}>
-                <button
-                  type="button"
-                  value={el.id}
-                  className={idx === buttonIndex ? "active" : ""}
-                  onClick={handleBtnClick}
-                >
-                  {el.name}
-                </button>
-                <div />
-              </React.Fragment>
-            ))}
-          </SButtonContainer>
-          {/* <SListContainer>
-            {isLoading ? (
-              <SLoading />
-            ) : (
-              data?.map((store) => (
-                <PlaceCard
-                  key={store.storeId}
-                  storeId={store.storeId}
-                  img={store.storeImages[0].storeImage}
-                  location={store.addressName}
-                  name={store.storeName}
-                />
+        <SListContainer>
+          {isLoading ? (
+            <SLoading />
+          ) : (
+            data
+              ?.slice(0, 5)
+              .map(({ storeId, storeImages, storeName, addressName }, i) => (
+                <li key={storeId}>
+                  <PlaceCard
+                    rank={i + 1}
+                    storeId={storeId}
+                    img={storeImages[0].storeImage}
+                    location={addressName}
+                    name={storeName}
+                  />
+                </li>
               ))
-            )}
-          </SListContainer> */}
-        </SMainContainer>
+          )}
+        </SListContainer>
       </SSection>
     </Container>
   );
