@@ -2,7 +2,14 @@
 /* eslint-disable consistent-return */
 import { Editor } from "@toast-ui/react-editor";
 import { AxiosResponse } from "axios";
-import { RefObject, useCallback, useEffect, useRef, useState } from "react";
+import {
+  RefObject,
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import { MutationFunction, useMutation, UseMutationOptions } from "react-query";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -37,7 +44,7 @@ interface PostFormsProps {
 }
 
 interface LocalStorageData {
-  lastModified: Date;
+  lastModified: string;
   body: string;
 }
 
@@ -47,7 +54,7 @@ function loadLocalStorageBody(
   updatedAt?: string,
   threadId?: number
 ) {
-  const initial = { lastModified: new Date(), body: "" };
+  const initial = { lastModified: "", body: "" };
 
   // 새 게시물을 작성하는 상황
   if (!threadId || !updatedAt) {
@@ -83,9 +90,6 @@ const PostForms = ({
   mutateOptions,
 }: PostFormsProps) => {
   const { userId = -1 } = useAppSelector(selectUserInfos) || {};
-  const [editedBody] = useState(() =>
-    loadLocalStorageBody(userId, body, updatedAt, threadId)
-  );
   const [images, setImages] = useState<ThreadImages[]>(threadImages);
   const [bodyErr, setBodyErr] = useState(false);
   const editorRef = useRef<Editor>(null);
@@ -125,30 +129,45 @@ const PostForms = ({
     []
   );
 
-  const handleSubmit = async () => {
+  const checkBodyValidity = useCallback(() => {
     const body = getBodyHTML(editorRef);
 
     if (body.match(/^(<p>(<br>|\s{1,})<\/p>)$/g)) {
       setBodyErr(true);
-      return;
+      return false;
     }
+
     setBodyErr(false);
+    return true;
+  }, []);
+
+  const handleSubmit = async () => {
+    const isValid = checkBodyValidity();
+
+    if (!isValid) return;
+
     mutate({ images, body, threadId });
     removeSavedTempBody(userId, threadId);
   };
 
+  const savedBody = useMemo(
+    () => loadLocalStorageBody(userId, body, updatedAt, threadId),
+    [userId, body, updatedAt, threadId]
+  );
+
+  useEffect(() => {
+    if (savedBody === body) return;
+
+    toast.info("임시 저장된 본문을 불러왔습니다.");
+  }, [savedBody, body]);
+
   useEffect(() => {
     if (isSuccess) {
       const { threadId } = data.data;
+
       navigate(`/post/${threadId}`, { replace: true });
     }
   }, [isSuccess]);
-
-  useEffect(() => {
-    if (editedBody === body) return;
-
-    toast.info("임시 저장된 본문을 불러왔습니다.");
-  }, [editedBody, body]);
 
   return (
     <SForm
@@ -160,7 +179,7 @@ const PostForms = ({
         <SPostSection>
           <SEditorBox>
             <CustomEditor
-              value={editedBody}
+              value={savedBody}
               editorRef={editorRef}
               isError={bodyErr}
               errorMessage="한 글자 이상 입력해주세요."
