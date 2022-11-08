@@ -3,6 +3,7 @@ import { Outlet, useLocation } from "react-router-dom";
 import styled, { css } from "styled-components";
 
 import { mobile } from "../../assets";
+import ScrollToTopButton from "../ScrollToTopButton/ScrollToTopButton";
 import FloatSearchBar from "../SearchBar/FloatSearchBar";
 import Footer from "./Footer/Footer";
 import MobileNavbar from "./Navbar/MobileNavbar";
@@ -54,6 +55,7 @@ const SharedLayout = () => {
 
   return (
     <SMain>
+      <ScrollToTopButton />
       <TopNavbar>
         <FloatSearchBar hidden={hideFloatSearch} onBlur={onBlur} />
       </TopNavbar>
