@@ -1,7 +1,7 @@
 /* eslint-disable consistent-return */
 /* eslint-disable react/display-name */
 import axios from "axios";
-import { memo, ReactNode, useRef } from "react";
+import { memo, ReactNode } from "react";
 import { useQuery } from "react-query";
 
 import { queryClient } from "../../utils";
@@ -45,12 +45,9 @@ const PlaceCard = memo(
         let imageBlob: Blob;
 
         try {
-          const { data } = await axios.get<Blob>(
-            "https://images.pexels.com/photos/2014422/pexels-photo-2014422.jpeg" /* image */,
-            {
-              responseType: "blob",
-            }
-          );
+          const { data } = await axios.get<Blob>(image, {
+            responseType: "blob",
+          });
 
           imageBlob = data;
         } catch (err) {

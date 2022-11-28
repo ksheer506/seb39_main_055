@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 import styled, { css } from "styled-components";
 
@@ -16,6 +16,7 @@ const SMain = styled.main`
 const SContentBox = styled.div`
   position: relative;
   overflow-x: hidden;
+  scroll-behavior: smooth;
 
   ${mobile(css`
     height: calc(100vh - 70px);
@@ -47,6 +48,7 @@ const overWidthPaths = ["/search", "/place/list"];
 
 const SharedLayout = () => {
   const { pathname } = useLocation();
+  const contentRef = useRef<HTMLDivElement>(null);
   const [hideFloatSearch, setHideFloatSearch] = useState(true);
 
   const onBlur = () => {
@@ -55,11 +57,11 @@ const SharedLayout = () => {
 
   return (
     <SMain>
-      <ScrollToTopButton />
+      <ScrollToTopButton target={contentRef} />
       <TopNavbar>
-        <FloatSearchBar hidden={hideFloatSearch} onBlur={onBlur} />
+        <FloatSearchBar hidden={!hideFloatSearch} onBlur={onBlur} />
       </TopNavbar>
-      <SContentBox>
+      <SContentBox ref={contentRef}>
         <SABox>
           <SSection isOverWidth={overWidthPaths.includes(pathname)}>
             <Outlet />
