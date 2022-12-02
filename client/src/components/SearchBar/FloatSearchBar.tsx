@@ -1,4 +1,4 @@
-import { FocusEventHandler, useEffect, useRef, useState } from "react";
+import { FocusEventHandler, useEffect, useRef } from "react";
 import styled, { css } from "styled-components";
 
 import SearchBar from "./SearchBar";

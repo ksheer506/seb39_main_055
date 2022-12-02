@@ -59,7 +59,7 @@ const SharedLayout = () => {
     <SMain>
       <ScrollToTopButton target={contentRef} />
       <TopNavbar>
-        <FloatSearchBar hidden={!hideFloatSearch} onBlur={onBlur} />
+        <FloatSearchBar hidden={hideFloatSearch} onBlur={onBlur} />
       </TopNavbar>
       <SContentBox ref={contentRef}>
         <SABox>
